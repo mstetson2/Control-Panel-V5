@@ -1,13 +1,20 @@
 #include <Arduino.h>
 
+//Serial: Computer serial (Pins 0,1)
+//Serial1: LCD Screen (18,19)
+//Serial2: Bluetooth (16,17)
+//Serial3: Keyboard (14,15)
+
+
 void sT(String m) {
 	Serial.println(m);
 }
 
 void bootCredits() {
+//PRINTS ON BOOTUP
 	char* creditMessage[] =
-			{ "Control Panel Version 4_alpha.CHECK GIT", "MATT STETSON",
-					"mstetson717@gmail.com", "Last Updated: CHECK FILE" };
+			{ "Control Panel Version 5_alpha.CHECK GIT", "MATT STETSON",
+					"stetson2@illinois.edu", "Last Updated: 9/8/16" };
 	Serial.println(space);
 	Serial.println(slant[0]);
 	Serial.println(space);
@@ -21,6 +28,7 @@ void bootCredits() {
 }
 
 void disclaimer() {
+//PRINTS ON BOOT
 	Serial.println("");
 	Serial.println(vert[0]);
 	Serial.println(F("READ OPERATING INSTRUCTIONS BEFORE USE!!"));

@@ -1,7 +1,9 @@
 #include <Arduino.h>
-
 void lampTest() {
-	if (modeManual) {
+//LAMP TEST:
+//MODE:AUTO
+//If function enable, different functions available
+	if (modeAuto) {
 		if (functionEnabled) {
 			if (!b2) {
 				lampTestSerial(2);
@@ -22,7 +24,6 @@ void lampTest() {
 		digitalWrite(acknowledgeLed, LOW);
 	}
 }
-
 void lampTestAuto() {
 	if (!m1000) {
 		digitalWrite(modeLed, HIGH);
@@ -46,8 +47,9 @@ void lampTestAuto() {
 		digitalWrite(acknowledgeLed, HIGH);
 	}
 }
-
 void lampTestFunction() {
+//RIDE STOP: Skip boot
+//Trouble Button: test horn
 	if (!gatesOpen) {
 		if (!m1000) {
 			digitalWrite(modeLed, HIGH);
@@ -92,7 +94,6 @@ void lampTestFunction() {
 		debugM("Warning horn test");
 	}
 }
-
 void skipBoot() {
 	booted = true;
 	lampTested = true;
@@ -105,6 +106,7 @@ void skipBoot() {
 }
 
 void lampTestEnd() {
+//turns off all leds,
 	lampsOff();
 	lampTested = true;
 	digitalWrite(acknowledgeLed, LOW);

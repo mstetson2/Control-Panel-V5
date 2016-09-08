@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 void booter() {
+//blink estop during boot
 	estopBlinkBoot();
 	if (!preStarted) {
 		bootCredits();
@@ -69,6 +70,7 @@ void bFalse() {
 }
 
 void estopBlinkBoot() {
+//blinks estop until it is reset
 	if(estopReseted) {
 		if(m1000) {
 			digitalWrite(estopLed, HIGH);

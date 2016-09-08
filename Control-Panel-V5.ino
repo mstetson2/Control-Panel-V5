@@ -148,7 +148,7 @@ long p500;
 long p1000;
 
 boolean restraintsLocked;
-boolean gatesOpen;
+boolean gatesClosed;
 boolean dispatching;
 boolean autoUnlocked;
 
@@ -156,6 +156,9 @@ boolean autoUnlocked;
 
 void setup() {
 	Serial.begin(9600);
+	Serial1.begin(9600);
+	Serial2.begin(9600);
+	Serial3.begin(9600);
 
 	pinMode(trouble_pressed, INPUT);
 	pinMode(emergency_stop_notpressed, INPUT);

@@ -9,6 +9,7 @@ void loopedVoids() {
 	blink1000();
 	buttonStates();
 
+	//set which methods will be running depending on if booted or not
 	if (booted == false) {
 		booter();
 		if (panelOn) {
