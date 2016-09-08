@@ -1,0 +1,294 @@
+#include <Arduino.h>
+
+void sT(String m) {
+	Serial.println(m);
+}
+
+void bootCredits() {
+	char* creditMessage[] =
+			{ "Control Panel Version 4_alpha.CHECK GIT", "MATT STETSON",
+					"mstetson717@gmail.com", "Last Updated: CHECK FILE" };
+	Serial.println(space);
+	Serial.println(slant[0]);
+	Serial.println(space);
+	Serial.println(creditMessage[0]);
+	Serial.println(creditMessage[3]);
+	Serial.println(space);
+	Serial.println(creditMessage[1]);
+	Serial.println(creditMessage[2]);
+	Serial.println(space);
+	Serial.println(slant[0]);
+}
+
+void disclaimer() {
+	Serial.println("");
+	Serial.println(vert[0]);
+	Serial.println(F("READ OPERATING INSTRUCTIONS BEFORE USE!!"));
+	Serial.println(vert[0]);
+	Serial.println("");
+	preStarted = true;
+}
+
+void bootSerial(int bM) {
+	char* bM_[] =
+			{ "PANEL POWER IS OFF. SWITCH PANEL TO ON TO BEGIN STARTUP.",
+					"SWITCH TO MANUAL MODE TO BEGIN PHASE I STARTUP.",
+					"ATTENTION: E-STOP TEST, E-STOP RESET, & WARNING HORN have been skipped. Please restart if this was a mistake." };
+
+	switch (bM) {
+	case 1:
+		Serial.println(bM_[0]);
+		break;
+	case 2:
+		Serial.println(bM_[1]);
+		s1 = true;
+		break;
+	case 3:
+		Serial.println(bM_[2]);
+		s2 = true;
+		break;
+	default:
+		break;
+		bM = 0;
+	}
+}
+
+void lampTestSerial(int ltM) {
+	char* m[] =
+			{
+					"Phase I startup: LAMP TEST: Ensure all lamps function correctly.",
+					"Press ACKNOWLEDGE to confirm all lamps function properly and continue startup.",
+					"EXTRA FUNCTIONS: ",
+					"Switch ENTRANCE GATES to OPEN to turn all lamps solid.",
+					"Press and hold TROUBLE for STARTUP HORN test.",
+					"Press and hold RIDE START for WARNING MESSAGE test",
+					"Press RIDE STOP to bypass startup => MAINTAINENCE ONLY!",
+					"LAMP TEST COMPLETE." };
+	char* eM[] = { "Cannot complete lamp test. \n Switch GATES to CLOSED." };
+
+	switch (ltM) {
+	case 1:
+		Serial.println(m[0]);
+		Serial.println(m[1]);
+		Serial.println(space);
+		b1 = true;
+		break;
+	case 2:
+		Serial.println(m[2]);
+		Serial.println(m[3]);
+		Serial.println(m[4]);
+		Serial.println(m[5]);
+		Serial.println(m[6]);
+		Serial.println(space);
+		b2 = true;
+		break;
+	case 3:
+		Serial.println(m[7]);
+		b3 = true;
+		break;
+	case 4:
+		Serial.println(eM[0]);
+		b4 = true;
+		break;
+
+	default:
+		break;
+	}
+}
+
+void stopTestSerial(int stM) {
+	char* p[] { "Switch to BYPASS MODE to continue startup." };
+
+	char* m[] {
+			"PHASE I STARTUP: STOP TEST; Ensure all stop buttons function correctly.",
+			"RIDE STOP TEST: Press RIDE STOP",
+			"RIDE STOP functioning correctly.",
+			"EMERGENCY STOP TEST: Press EMERGENCY STOP!",
+			"EMERGENCY STOP PRESSED: Pull up EMERGENCY STOP",
+			"E-STOP functioning correctly.",
+			"STOP TEST COMPLETE. Press ACKNOWLEDGE to continue!"
+
+	};
+
+	switch (stM) {
+	case 1:
+		Serial.println(p[0]);
+		b1 = true;
+		break;
+	case 2:
+		Serial.println(m[0]);
+		b2 = true;
+		break;
+	case 3:
+		Serial.println(m[1]);
+		b3 = true;
+		break;
+	case 4:
+		Serial.println(m[2]);
+		b4 = true;
+		break;
+	case 5:
+		Serial.println(m[3]);
+		b5 = true;
+		break;
+	case 6:
+		Serial.println(m[4]);
+		b6 = true;
+		break;
+	case 7:
+		Serial.println(m[5]);
+		Serial.println(m[6]);
+		b7 = true;
+		break;
+
+	default:
+		debugM("UKNOWN CASE stopTestSerial");
+	}
+
+}
+
+void functionsChooseSerial(int efM) {
+
+	char* em[] = {
+			"Switch to AUTOMATIC MODE to continue startup!",
+			"PHASE I STARTUP: EXTRA FUNCTIONS; Configure panel",
+			"PRESS ACKNOWLEDGE to continue startup!",
+			"Press RIDE STOP to goto functions select screen!"
+			"EXTRA FUNCTIONS BOOTED TXT!!"};
+
+	switch (efM) {
+
+	case 1:
+		Serial.println(em[0]);
+		b1 = true;
+		break;
+
+	case 2:
+		Serial.println(em[1]);
+		Serial.println(em[2]);
+		Serial.println(em[3]);
+		b2 = true;
+		break;
+
+	case 3:
+		Serial.println(em[4]);
+		b2 = true;
+		break;
+	}
+}
+
+void functionSerial(int fM) {
+
+	char* menu[] = {
+			"Switch OPERATIONS TYPE to TYPE 1 and ENTRANCE GATES to CLOSED!",
+			"FUNCTIONS MENU:",
+			"PAGE 1 (AUTOMATIC MODE): OPERATIONS FUNCTIONS",
+			"PAGE 2 (MANUAL MODE): MAINTENANCE SETTINGS",
+			"PAGE 3 (BYPASS MODE): TROUBLESHOOTING & DEBUG MENU; ADVANCED ONLY!"
+	};
+
+	switch(fM) {
+
+	case 1:
+		Serial.println(menu[0]);
+		b1 = true;
+		break;
+
+
+
+
+
+
+	}
+
+}
+
+void functionPage1Serial(int fuM) {
+
+	char* page1[] = {
+
+			"FUNCTIONS MENU: (PAGE 1 OF 3); OPERATIONS FUNCTIONS",
+			"LEAD/SUPERVISORS ONLY!",
+			"PAGE 1A: LEAD-ACCESSABLE FUNCTIONS",
+			"Press LOCK RESTRAINTS to toggle AUTOMATIC RESTRAINTS UNLOCK",
+			"Press DISPATCH RIGHT to LIST CURRENT OPERATIONS SETTINGS",
+			"For more options, switch GATES to OPEN",
+			"PAGE 2A: SUPERVISOR-ACCESSABLE FUNCTIONS",
+			"Press DISPATCH RIGHT for DISPATCH TOGGLE",
+			"RESTRAINTS WILL NOW AUTOMATICALLY UNLOCK IN AUTOMATIC MODE!",
+			"RESTRAINTS WILL NO LONGER AUTOMATICALLY UNLOCK! IN AUTOMATIC MODE",
+			"SUPERVISOR MODE ENABLED!",
+			"SUPERVISOR MODE DISABLED!"
+	};
+
+	switch(fuM) {
+
+	case 1:
+		Serial.println(page1[0]);
+		Serial.println(page1[1]);
+		f1 = true;
+		break;
+
+	case 11:
+		Serial.println(page1[2]);
+		Serial.println(page1[3]);
+		Serial.println(page1[4]);
+		Serial.println(page1[5]);
+		f1a = true;
+		f1b = false;
+		break;
+
+	case 12:
+		Serial.println(page1[6]);
+		Serial.println(page1[7]);
+		f1b = true;
+		f1a = false;
+		break;
+
+	case 111:
+		Serial.println(page1[8]);
+		break;
+
+	case 112:
+		Serial.println(page1[9]);
+		break;
+	case 121:
+		Serial.println(page1[10]);
+		break;
+	case 122:
+		Serial.println(page1[11]);
+		break;
+
+	}
+}
+
+void functionPage2Serial(int fuM) {
+
+	char* page2[] = {
+			""
+	};
+
+	switch(fuM) {
+
+	case 2:
+		break;
+
+	}
+
+}
+
+
+
+void listSettings(int sM) {
+
+}
+
+void estopResetStartupSerial(int esrsM) {
+
+}
+
+
+
+
+
+
