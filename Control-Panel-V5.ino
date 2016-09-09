@@ -1,4 +1,11 @@
 #include <Arduino.h>
+#include <Wire.h>
+
+//	ARDUINO CONTROL PANEL
+//	MATT STETSON
+//	stetson2@illinois.edu
+//	mstetson717@gmail.com
+String version = "5.0.0 dev 1";
 
 char slant[] = {
 		"//////////////////////////////////////////////////////////////" };
@@ -76,12 +83,6 @@ int hornTone = 150;
 //START OF STARTUP VARS:======
 boolean booted;
 boolean preStarted;
-boolean lampTested;
-boolean stopTested;
-boolean extraFunctionsChoosed;
-boolean functionsSelected;
-boolean estopReseted;
-boolean finalWarninged;
 boolean startInitMessage;
 
 int startMessage = 0;
@@ -115,6 +116,14 @@ boolean f2b;
 boolean f3;
 boolean f3a;
 boolean f3b;
+
+boolean lampTested;
+boolean stopTested;
+boolean extraFunctionsChoosed;
+boolean functionsSelected;
+boolean estopReseted;
+boolean finalWarninged;
+boolean extraFunctionsChoosing;
 
 boolean rAutoUnlock;
 boolean supervisorMode;
@@ -156,10 +165,10 @@ boolean autoUnlocked;
 
 void setup() {
 	Serial.begin(9600);
-	Serial1.begin(9600);
-	Serial2.begin(9600);
-	Serial3.begin(9600);
+	//Serial2.begin(9600);
+	//Serial3.begin(9600);
 
+	//INPUTS
 	pinMode(trouble_pressed, INPUT);
 	pinMode(emergency_stop_notpressed, INPUT);
 	pinMode(control_power_on, INPUT);
@@ -175,7 +184,7 @@ void setup() {
 	pinMode(dispatch_l_pressed, INPUT);
 	pinMode(dispatch_r_pressed, INPUT);
 	pinMode(airgates_closed, INPUT);
-
+	//OUTPUTS
 	pinMode(powerLed, OUTPUT);
 	pinMode(modeLed, OUTPUT);
 	pinMode(troubleLed, OUTPUT);
@@ -210,4 +219,3 @@ void setup() {
 void loop() {
 	loopedVoids();
 }
-

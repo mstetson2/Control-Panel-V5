@@ -12,8 +12,9 @@ void sT(String m) {
 
 void bootCredits() {
 //PRINTS ON BOOTUP
+
 	char* creditMessage[] =
-			{ "Control Panel Version 5_alpha.CHECK GIT", "MATT STETSON",
+			{ "Control Panel", "MATT STETSON",
 					"stetson2@illinois.edu", "Last Updated: 9/8/16" };
 	Serial.println(space);
 	Serial.println(slant[0]);
@@ -23,6 +24,8 @@ void bootCredits() {
 	Serial.println(space);
 	Serial.println(creditMessage[1]);
 	Serial.println(creditMessage[2]);
+	Serial.println("VERSION: ");
+	Serial.print(version);
 	Serial.println(space);
 	Serial.println(slant[0]);
 }
@@ -295,7 +298,12 @@ void estopResetStartupSerial(int esrsM) {
 
 }
 
-
+void debugM(String dbMessage) {
+	Serial.print("DEBUG:  ");
+	Serial.print(dbMessage);
+	Serial.println(space);
+	delay(10);
+}
 
 
 

@@ -1,6 +1,6 @@
-#include <Arduino.h>
 
 void extraFunctionsChoose() {
+extraFunctionsChoosing = true;
 	if (modeAuto) {
 
 		if (!b2) {
@@ -46,6 +46,7 @@ void functionsSelect() {
 
 	if(acknowledgePressed) {
 		functionsSelected = true;
+		extraFunctionsChoosing = false;
 		bFalse();
 		lampsOff();
 		digitalWrite(acknowledgeLed, LOW);

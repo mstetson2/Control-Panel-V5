@@ -114,13 +114,6 @@ void buttonStates() {
 	}
 }
 
-void debugM(String dbMessage) {
-	Serial.print("DEBUG:  ");
-	Serial.print(dbMessage);
-	Serial.println(space);
-	delay(10);
-}
-
 void blink100() {
 	unsigned long c100 = millis();
 	if (c100 - p100 > 100) {
@@ -132,7 +125,6 @@ void blink100() {
 		}
 	}
 }
-
 void blink250() {
 	unsigned long c250 = millis();
 	if (c250 - p250 > 250) {
@@ -144,7 +136,6 @@ void blink250() {
 		}
 	}
 }
-
 void blink500() {
 	unsigned long c500 = millis();
 	if (c500 - p500 > 500) {
@@ -156,7 +147,6 @@ void blink500() {
 		}
 	}
 }
-
 void blink1000() {
 	unsigned long c1000 = millis();
 	if (c1000 - p1000 > 1000) {

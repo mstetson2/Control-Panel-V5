@@ -1,4 +1,7 @@
-#include <Arduino.h>
+
+
+
+
 void lampTest() {
 //LAMP TEST:
 //MODE:AUTO
@@ -104,11 +107,10 @@ void skipBoot() {
 	lampsOff();
 
 }
-
 void lampTestEnd() {
 //turns off all leds,
 	lampsOff();
-	lampTested = true;
+	lampTested = true;	
 	digitalWrite(acknowledgeLed, LOW);
 	lampTestSerial(3);
 	bFalse();
@@ -120,7 +122,7 @@ void stopTest() {
 		stopTestSerial(1);
 	}
 
-	if (modeBypass) {
+	if (modeAuto) {
 		if (!b2) {
 			stopTestSerial(2);
 		}
@@ -135,8 +137,13 @@ void stopTest() {
 				digitalWrite(ridestopLed, LOW);
 			}
 			if (ridestopPressed) {
+			
 				digitalWrite(ridestopLed, HIGH);
 				i1 = true;
+				//QUIET
+				i2 = true;
+				i3 = true;
+				
 				if (!b4) {
 					stopTestSerial(4);
 				}
@@ -176,7 +183,6 @@ void stopTest() {
 		b2 = false;
 	}
 }
-
 void stopTestCompleted() {
 	digitalWrite(estopLed, HIGH);
 	i2 = true;
@@ -189,6 +195,7 @@ void stopTestCompleted() {
 		stopTested = true;
 		digitalWrite(acknowledgeLed, LOW);
 		lampsOff();
+		digitalWrite(ridestopLed, HIGH);
 		bFalse();
 	}
 	if (!b7) {
@@ -199,17 +206,45 @@ void stopTestCompleted() {
 //Extra functions is on functionsSelect.ino
 
 void estopResetStartup() {
+int startCount;
 
 if(modeAuto) {
 	digitalWrite(estopLed, HIGH);
 	if(m1000) {
 		digitalWrite(ridestartLed, HIGH);
+		if(ridestartPressed) {
+		startCount++;
+		}
+		else {
+		startCount = 0;
+		}
 	}
 	else {
 		digitalWrite(ridestartLed, LOW);
 	}
+	
+	if(startCount = 2) {
+		estopResetComplete();
+	}
+	
+		if(functionEnabled && !functionsSelected) {
+		if(m1000) {
+		digitalWrite(restraintLed, HIGH);
+		}
+		else {
+		digitalWrite(restraintLed, LOW);
+		}
+		if(restraintPressed) {
+		extraFunctionsChoosing = true;
+		}
+	
+	}
+}
 }
 
+void estopResetComplete() {
+	estopReseted = true;
+	lampsOff();
 }
 
 void finalWarning() {

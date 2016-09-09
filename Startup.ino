@@ -1,4 +1,4 @@
-#include <Arduino.h>
+
 
 void booter() {
 //blink estop during boot
@@ -20,15 +20,13 @@ void booter() {
 				if (!stopTested) {
 					stopTest();
 				} else {
-					if (!extraFunctionsChoosed) {
-						extraFunctionsChoose();
+					if (!estopReseted) {
+						if(extraFunctionsChoosing) {
+						functionsSelect();
+						} else {
+						estopResetStartup();
+						}
 					} else {
-						if(!functionsSelected) {
-							functionsSelect();
-						} else {
-						if (!estopReseted) {
-							estopResetStartup();
-						} else {
 							if (!finalWarninged) {
 								finalWarning();
 							} else {
@@ -37,9 +35,9 @@ void booter() {
 						}
 					}
 					}
-				}
+				
 			}
-		} else {
+		 else {
 			digitalWrite(acknowledgeLed, LOW);
 			lampsOff();
 			s1 = false;
@@ -67,6 +65,7 @@ void bFalse() {
 	i1 = false;
 	i2 = false;
 	i3 = false;
+	delay(1000);
 }
 
 void estopBlinkBoot() {
