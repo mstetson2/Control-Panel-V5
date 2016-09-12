@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 void extraFunctionsChoose() {
-extraFunctionsChoosing = true;
+	extraFunctionsChoosing = true;
 	if (modeAuto) {
 
 		if (!b2) {
@@ -28,9 +28,8 @@ extraFunctionsChoosing = true;
 			extraFunctionsChoosed = true;
 			digitalWrite(ridestopLed, LOW);
 		}
-	}
-	else {
-		if(!b1) {
+	} else {
+		if (!b1) {
 			functionsChooseSerial(1);
 		}
 	}
@@ -38,14 +37,13 @@ extraFunctionsChoosing = true;
 
 void functionsSelect() {
 
-	if(!m1000) {
+	if (!m1000) {
 		digitalWrite(acknowledgeLed, HIGH);
-	}
-	else {
+	} else {
 		digitalWrite(acknowledgeLed, LOW);
 	}
 
-	if(acknowledgePressed) {
+	if (acknowledgePressed) {
 		functionsSelected = true;
 		extraFunctionsChoosing = false;
 		bFalse();
@@ -53,76 +51,71 @@ void functionsSelect() {
 		digitalWrite(acknowledgeLed, LOW);
 	}
 
-if(modeAuto) {
-	function1();
-}
+	if (modeAuto) {
+		function1();
+	}
 
-if(modeManual) {
-	function2();
-}
+	if (modeManual) {
+		function2();
+	}
 
-if(modeBypass) {
-	function3();
-}
+	if (modeBypass) {
+		function3();
+	}
 
 }
 
 void function1() {
 
-	if(!f1) {
-	functionPage1Serial(1);
+	if (!f1) {
+		functionPage1Serial(1);
 	}
 
-	if(!gatesOpen) {
+	if (!gatesOpen) {
 		digitalWrite(ridestartLed, LOW);
-		if(!f1a) {
-		functionPage1Serial(11);
+		if (!f1a) {
+			functionPage1Serial(11);
 		}
 
-		if(m1000) {
+		if (m1000) {
 			digitalWrite(restraintLed, HIGH);
 			digitalWrite(dispatchRLed, LOW);
-		}
-		else if(!rAutoUnlock) {
+		} else if (!rAutoUnlock) {
 			digitalWrite(restraintLed, LOW);
 			digitalWrite(dispatchRLed, HIGH);
 		}
 
-		if(restraintPressed) {
-			if(!rAutoUnlock) {
-			rAutoUnlock = true;
-			digitalWrite(restraintLed, HIGH);
-			functionPage1Serial(111);
-			}
-			else {
+		if (restraintPressed) {
+			if (!rAutoUnlock) {
+				rAutoUnlock = true;
+				digitalWrite(restraintLed, HIGH);
+				functionPage1Serial(111);
+			} else {
 				rAutoUnlock = false;
 				functionPage1Serial(112);
 			}
 			delay(1000);
 		}
 
-	}
-	else {
+	} else {
 		digitalWrite(restraintLed, LOW);
 		digitalWrite(dispatchRLed, LOW);
-		if(!f1b) {
+		if (!f1b) {
 			functionPage1Serial(12);
 		}
 
-		if(m1000) {
+		if (m1000) {
 			digitalWrite(ridestartLed, HIGH);
-		}
-		else if(!supervisorMode) {
+		} else if (!supervisorMode) {
 			digitalWrite(ridestartLed, LOW);
 		}
 
-		if(ridestartPressed) {
-			if(!supervisorMode) {
-			supervisorMode = true;
-			digitalWrite(ridestartLed, HIGH);
-			functionPage1Serial(121);
-			}
-			else {
+		if (ridestartPressed) {
+			if (!supervisorMode) {
+				supervisorMode = true;
+				digitalWrite(ridestartLed, HIGH);
+				functionPage1Serial(121);
+			} else {
 				supervisorMode = false;
 				functionPage1Serial(122);
 			}
@@ -130,7 +123,6 @@ void function1() {
 		}
 
 	}
-
 
 }
 

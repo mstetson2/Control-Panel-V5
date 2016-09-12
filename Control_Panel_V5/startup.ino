@@ -21,27 +21,26 @@ void booter() {
 					stopTest();
 				} else {
 					if (!longWarninged) {
-						if(extraFunctionsChoosing) {
-						functionsSelect();
+						if (extraFunctionsChoosing) {
+							functionsSelect();
 						} else {
-						longWarning();
+							longWarning();
 						}
 					} else {
-							if (!estopReseted) {
-								estopResetStartup();
+						if (!estopReseted) {
+							estopResetStartup();
+						} else {
+							if (finalStarted) {
+								finalStartup();
 							} else {
-								if(finalStarted) {
-									finalStartup();
-								} else {
 								//booted = true;
-								}
 							}
 						}
 					}
-					}
-				
+				}
 			}
-		 else {
+
+		} else {
 			digitalWrite(acknowledgeLed, LOW);
 			lampsOff();
 			s1 = false;
@@ -74,35 +73,29 @@ void bFalse() {
 
 void estopBlinkBoot() {
 //blinks estop until it is reset
-	if(longWarninged) {
-		if(ridestartPressed) {
-			if(m250) {
+	if (longWarninged) {
+		if (ridestartPressed) {
+			if (m250) {
 				digitalWrite(estopLed, LOW);
+			} else {
+				digitalWrite(estopLed, HIGH);
 			}
-			else {
-			digitalWrite(estopLed, HIGH);
-			}
-		}
-		else {
+		} else {
 
-		if(m1000) {
-			digitalWrite(estopLed, LOW);
-		}
-		else {
-			digitalWrite(estopLed, HIGH);
+			if (m1000) {
+				digitalWrite(estopLed, LOW);
+			} else {
+				digitalWrite(estopLed, HIGH);
+			}
 		}
 	}
-	}
 
-	if(estopReseted) {
-		if(m1000) {
-					digitalWrite(ridestopLed, LOW);
-				}
-				else {
-					digitalWrite(ridestopLed, HIGH);
-				}
+	if (estopReseted) {
+		if (m1000) {
+			digitalWrite(ridestopLed, LOW);
+		} else {
+			digitalWrite(ridestopLed, HIGH);
+		}
 	}
 }
-
-
 

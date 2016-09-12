@@ -9,9 +9,9 @@
 String version = "5.0.0 dev 1";
 
 char slant[] = {
-    "//////////////////////////////////////////////////////////////" };
+		"//////////////////////////////////////////////////////////////" };
 char vert[] =
-    { "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" };
+		{ "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" };
 
 String space = "";
 String debug = "DEBUG: ";
@@ -22,7 +22,6 @@ String debug = "DEBUG: ";
 //FOR QUIET E-STOP:
 //const int trouble_pressed = 48;
 //const int emergency_stop_notpressed = 25;
-
 
 const int trouble_pressed = 25;
 const int emergency_stop_notpressed = 48;
@@ -175,66 +174,66 @@ boolean autoUnlocked;
 
 //FOR LCD:
 SoftwareSerial LCD = SoftwareSerial(0, 14);
-const int LCDdelay=10;  // conservative, 2 actually works
+const int LCDdelay = 10;  // conservative, 2 actually works
 
 void setup() {
-  Serial.begin(9600);
-  //Serial2.begin(9600);
-  //Serial3.begin(9600);
+	Serial.begin(9600);
+	//Serial2.begin(9600);
+	//Serial3.begin(9600);
 
-  //FOR LCD:
-  LCD.begin(9600);
-  lcdC();
-  lcdPosition(0,0);
+	//FOR LCD:
+	LCD.begin(9600);
+	lcdC();
+	lcdPosition(0, 0);
 
-  //INPUTS
-  pinMode(trouble_pressed, INPUT);
-  pinMode(emergency_stop_notpressed, INPUT);
-  pinMode(control_power_on, INPUT);
-  pinMode(mode_auto_selected, INPUT);
-  pinMode(mode_bypass_selected, INPUT);
-  pinMode(ride_start_pressed, INPUT);
-  pinMode(ride_stop_notpressed, INPUT);
-  pinMode(function_enable_enabled, INPUT);
-  pinMode(type_1_selected, INPUT);
-  pinMode(type_3_selected, INPUT);
-  pinMode(acknowledge_pressed, INPUT);
-  pinMode(restraint_pressed, INPUT);
-  pinMode(dispatch_l_pressed, INPUT);
-  pinMode(dispatch_r_pressed, INPUT);
-  pinMode(airgates_closed, INPUT);
-  //OUTPUTS
-  pinMode(powerLed, OUTPUT);
-  pinMode(modeLed, OUTPUT);
-  pinMode(troubleLed, OUTPUT);
-  pinMode(estopLed, OUTPUT);
-  pinMode(ridestartLed, OUTPUT);
-  pinMode(ridestopLed, OUTPUT);
-  pinMode(acknowledgeLed, OUTPUT);
-  pinMode(restraintLed, OUTPUT);
-  pinMode(dispatchLLed, OUTPUT);
-  pinMode(dispatchRLed, OUTPUT);
-  //pinMode(warning_horn, OUTPUT);
-  //^is analog
+	//INPUTS
+	pinMode(trouble_pressed, INPUT);
+	pinMode(emergency_stop_notpressed, INPUT);
+	pinMode(control_power_on, INPUT);
+	pinMode(mode_auto_selected, INPUT);
+	pinMode(mode_bypass_selected, INPUT);
+	pinMode(ride_start_pressed, INPUT);
+	pinMode(ride_stop_notpressed, INPUT);
+	pinMode(function_enable_enabled, INPUT);
+	pinMode(type_1_selected, INPUT);
+	pinMode(type_3_selected, INPUT);
+	pinMode(acknowledge_pressed, INPUT);
+	pinMode(restraint_pressed, INPUT);
+	pinMode(dispatch_l_pressed, INPUT);
+	pinMode(dispatch_r_pressed, INPUT);
+	pinMode(airgates_closed, INPUT);
+	//OUTPUTS
+	pinMode(powerLed, OUTPUT);
+	pinMode(modeLed, OUTPUT);
+	pinMode(troubleLed, OUTPUT);
+	pinMode(estopLed, OUTPUT);
+	pinMode(ridestartLed, OUTPUT);
+	pinMode(ridestopLed, OUTPUT);
+	pinMode(acknowledgeLed, OUTPUT);
+	pinMode(restraintLed, OUTPUT);
+	pinMode(dispatchLLed, OUTPUT);
+	pinMode(dispatchRLed, OUTPUT);
+	//pinMode(warning_horn, OUTPUT);
+	//^is analog
 
-  digitalWrite(trouble_pressed, HIGH);
-  digitalWrite(emergency_stop_notpressed, HIGH);
-  digitalWrite(control_power_on, HIGH);
-  digitalWrite(mode_auto_selected, HIGH);
-  digitalWrite(mode_bypass_selected, HIGH);
-  digitalWrite(ride_start_pressed, HIGH);
-  digitalWrite(ride_stop_notpressed, HIGH);
-  digitalWrite(function_enable_enabled, HIGH);
-  digitalWrite(type_1_selected, HIGH);
-  digitalWrite(type_3_selected, HIGH);
-  digitalWrite(restraint_pressed, HIGH);
-  digitalWrite(acknowledge_pressed, HIGH);
-  digitalWrite(dispatch_l_pressed, HIGH);
-  digitalWrite(dispatch_r_pressed, HIGH);
-  digitalWrite(airgates_closed, HIGH);
+	digitalWrite(trouble_pressed, HIGH);
+	digitalWrite(emergency_stop_notpressed, HIGH);
+	digitalWrite(control_power_on, HIGH);
+	digitalWrite(mode_auto_selected, HIGH);
+	digitalWrite(mode_bypass_selected, HIGH);
+	digitalWrite(ride_start_pressed, HIGH);
+	digitalWrite(ride_stop_notpressed, HIGH);
+	digitalWrite(function_enable_enabled, HIGH);
+	digitalWrite(type_1_selected, HIGH);
+	digitalWrite(type_3_selected, HIGH);
+	digitalWrite(restraint_pressed, HIGH);
+	digitalWrite(acknowledge_pressed, HIGH);
+	digitalWrite(dispatch_l_pressed, HIGH);
+	digitalWrite(dispatch_r_pressed, HIGH);
+	digitalWrite(airgates_closed, HIGH);
 
 }
 
 void loop() {
-  loopedVoids();
+	loopedVoids();
 }

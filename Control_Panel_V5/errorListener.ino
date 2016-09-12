@@ -2,7 +2,7 @@
 
 void errorListeners() {
 	typeError();
-	if(modeAuto) {
+	if (modeAuto) {
 		//autoAcknowledge();
 	}
 }
