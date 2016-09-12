@@ -1,6 +1,4 @@
-
-
-
+#include <Arduino.h>
 
 void lampTest() {
 //LAMP TEST:
@@ -110,7 +108,7 @@ void skipBoot() {
 void lampTestEnd() {
 //turns off all leds,
 	lampsOff();
-	lampTested = true;	
+	lampTested = true;
 	digitalWrite(acknowledgeLed, LOW);
 	lampTestSerial(3);
 	bFalse();
@@ -137,13 +135,10 @@ void stopTest() {
 				digitalWrite(ridestopLed, LOW);
 			}
 			if (ridestopPressed) {
-			
+
 				digitalWrite(ridestopLed, HIGH);
 				i1 = true;
-				//QUIET
-				i2 = true;
-				i3 = true;
-				
+
 				if (!b4) {
 					stopTestSerial(4);
 				}
@@ -179,6 +174,7 @@ void stopTest() {
 		}
 
 	} else {
+		digitalWrite(acknowledgeLed, LOW);
 		lampsOff();
 		b2 = false;
 	}
@@ -197,56 +193,162 @@ void stopTestCompleted() {
 		lampsOff();
 		digitalWrite(ridestopLed, HIGH);
 		bFalse();
+		digitalWrite(estopLed, HIGH);
+		delay(1000);
 	}
 	if (!b7) {
 		stopTestSerial(7);
 	}
 }
 
+boolean rideChecked;
+int ackHold;
+int startCount = 0;
+int previousMillis;
+void longWarning() {
+	digitalWrite(estopLed, HIGH);
+	unsigned long currentMillis = millis();
+	if (!b1) {
+		longStartupSerial(1);
+		b1 = true;
+	}
+	if (modeAuto) {
+		if (!b2) {
+			longStartupSerial(2);
+			b2 = true;
+		}
+		if (!rideChecked) {
+
+			if (currentMillis - previousMillis > 1000) {
+				previousMillis = currentMillis;
+
+				if (acknowledgePressed) {
+					digitalWrite(acknowledgeLed, HIGH);
+					ackHold++;
+				} else {
+					ackHold = 0;
+				}
+			}
+
+			if (ackHold == 2) {
+				longStartupSerial(3);
+				digitalWrite(acknowledgeLed, LOW);
+				rideChecked = true;
+			}
+
+			if (m1000) {
+				digitalWrite(acknowledgeLed, HIGH);
+			} else {
+				if (!acknowledgePressed) {
+					digitalWrite(acknowledgeLed, LOW);
+				}
+			}
+
+		} else {
+			digitalWrite(acknowledgeLed, LOW);
+			if (currentMillis - previousMillis > 1000) {
+				previousMillis = currentMillis;
+
+				if (ridestartPressed) {
+					digitalWrite(ridestartLed, HIGH);
+					startCount++;
+				} else {
+					startCount = 0;
+				}
+			}
+
+			if (startCount == 10) {
+				longStartupSerial(4);
+				longWarningComplete();
+			}
+
+			if (m1000) {
+				digitalWrite(ridestartLed, HIGH);
+			} else {
+				if (!ridestartPressed) {
+					digitalWrite(ridestartLed, LOW);
+				}
+			}
+
+			if (functionEnabled && !functionsSelected) {
+				if (m1000) {
+					digitalWrite(restraintLed, HIGH);
+				} else {
+					digitalWrite(restraintLed, LOW);
+				}
+				if (restraintPressed) {
+					extraFunctionsChoosing = true;
+				}
+
+			}
+		}
+	} else {
+		digitalWrite(acknowledgeLed, LOW);
+		lampsOff();
+		b2 = false;
+	}
+}
+void longWarningComplete() {
+	lampsOff();
+	digitalWrite(ridestartLed, LOW);
+	bFalse();
+	delay(1000);
+	longWarninged = true;
+
+}
 //Extra functions is on functionsSelect.ino
 
 void estopResetStartup() {
-int startCount;
 
-if(modeAuto) {
-	digitalWrite(estopLed, HIGH);
-	if(m1000) {
-		digitalWrite(ridestartLed, HIGH);
-		if(ridestartPressed) {
-		startCount++;
-		}
-		else {
-		startCount = 0;
-		}
+	unsigned long currentMillis = millis();
+
+	if (!b1) {
+		esrStartupSerial(1);
+		b1 = true;
 	}
-	else {
-		digitalWrite(ridestartLed, LOW);
-	}
-	
-	if(startCount = 2) {
-		estopResetComplete();
-	}
-	
-		if(functionEnabled && !functionsSelected) {
-		if(m1000) {
-		digitalWrite(restraintLed, HIGH);
+
+	if (modeAuto) {
+		if (!b2) {
+			esrStartupSerial(2);
+			b2 = true;
 		}
-		else {
-		digitalWrite(restraintLed, LOW);
+		if (currentMillis - previousMillis > 1000) {
+			previousMillis = currentMillis;
+
+			if (ridestartPressed) {
+				digitalWrite(ridestartLed, HIGH);
+				startCount++;
+			} else {
+				startCount = 0;
+			}
 		}
-		if(restraintPressed) {
-		extraFunctionsChoosing = true;
+
+		if (startCount == 10) {
+			esrStartupSerial(3);
+			estopResetComplete();
 		}
-	
+
+		if (m1000) {
+			digitalWrite(ridestartLed, HIGH);
+		} else {
+			if (!ridestartPressed) {
+				digitalWrite(ridestartLed, LOW);
+			}
+		}
+	} else {
+		lampsOff();
+		b2 = false;
 	}
 }
-}
-
 void estopResetComplete() {
 	estopReseted = true;
+	startCount = 0;
 	lampsOff();
+	digitalWrite(ridestartLed, LOW);
+	bFalse();
 }
 
-void finalWarning() {
+void finalStartup() {
 
 }
+

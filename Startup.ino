@@ -1,4 +1,4 @@
-
+#include <Arduino.h>
 
 void booter() {
 //blink estop during boot
@@ -20,17 +20,21 @@ void booter() {
 				if (!stopTested) {
 					stopTest();
 				} else {
-					if (!estopReseted) {
+					if (!longWarninged) {
 						if(extraFunctionsChoosing) {
 						functionsSelect();
 						} else {
-						estopResetStartup();
+						longWarning();
 						}
 					} else {
-							if (!finalWarninged) {
-								finalWarning();
+							if (!estopReseted) {
+								estopResetStartup();
 							} else {
-								booted = true;
+								if(finalStarted) {
+									finalStartup();
+								} else {
+								//booted = true;
+								}
 							}
 						}
 					}
@@ -70,13 +74,33 @@ void bFalse() {
 
 void estopBlinkBoot() {
 //blinks estop until it is reset
-	if(estopReseted) {
-		if(m1000) {
+	if(longWarninged) {
+		if(ridestartPressed) {
+			if(m250) {
+				digitalWrite(estopLed, LOW);
+			}
+			else {
 			digitalWrite(estopLed, HIGH);
+			}
 		}
 		else {
+
+		if(m1000) {
 			digitalWrite(estopLed, LOW);
 		}
+		else {
+			digitalWrite(estopLed, HIGH);
+		}
+	}
+	}
+
+	if(estopReseted) {
+		if(m1000) {
+					digitalWrite(ridestopLed, LOW);
+				}
+				else {
+					digitalWrite(ridestopLed, HIGH);
+				}
 	}
 }
 

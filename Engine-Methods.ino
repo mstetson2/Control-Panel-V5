@@ -5,6 +5,7 @@ void buttonStates() {
 		troublePressed = true;
 	} else {
 		troublePressed = false;
+
 	}
 
 	if (digitalRead(emergency_stop_notpressed) != LOW) {
@@ -39,10 +40,12 @@ void buttonStates() {
 		Serial.println("PROGRAMM ERROR: UNKNOWN MODE!!");
 	}
 
-	if (digitalRead(ride_start_pressed) == LOW) {
-		ridestartPressed = true;
-	} else {
+	if (digitalRead(ride_start_pressed) == !LOW) {
 		ridestartPressed = false;
+		//digitalWrite(ridestartLed, LOW);
+	} else {
+		ridestartPressed = true;
+		//digitalWrite(ridestartLed, HIGH);
 	}
 
 	if (digitalRead(ride_stop_notpressed) != LOW) {
