@@ -2,7 +2,7 @@
  * By Matt Stetson
  * stetson2@illinois.edu
  * Updated 9/8/2016 
- * Version 4.0.0 dev 1
+ * Version 5.0.0 dev 1
  */
 #include <Keyboard.h>
 #include <Wire.h>
