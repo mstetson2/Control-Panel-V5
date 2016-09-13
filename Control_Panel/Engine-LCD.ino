@@ -24,5 +24,5 @@ void serCommand(){   //a general function to call the command flag for issuing a
 }
 
 void lcdN() {
-	lcdPosition(1,0);
+  lcdPosition(1,0);
 }

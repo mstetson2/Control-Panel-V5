@@ -13,10 +13,11 @@
  C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\libraries\Wire\src/Wire.h \
  C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\cores\arduino/Stream.h \
  C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\libraries\SoftwareSerial\src/SoftwareSerial.h \
- ../Control_Panel_V5.ino ../Engine-Methods.ino ../LCD-Methods.ino \
- ../Operations-Methods.ino ../Serial-Messages.ino ../Stop-Listeners.ino \
- ../errorListener.ino ../functionsSelect.ino ../loopedVoids.ino \
- ../startup.ino ../startupMethods.ino
+ ../Control_Panel.ino ../Engine-LCD.ino ../Engine-Loops.ino \
+ ../Engine-Serial_Messages.ino ../Engine.ino ../Operations-Director.ino \
+ ../Operations-Error_Handler.ino ../Operations-Stop_Listener.ino \
+ ../Operations-Type_1.ino ../Settings-Functions_Select.ino \
+ ../Startup-Director.ino ../Startup-Methods.ino
 
 C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\cores\arduino/Arduino.h:
 
@@ -46,24 +47,26 @@ C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\cores
 
 C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\libraries\SoftwareSerial\src/SoftwareSerial.h:
 
-../Control_Panel_V5.ino:
+../Control_Panel.ino:
 
-../Engine-Methods.ino:
+../Engine-LCD.ino:
 
-../LCD-Methods.ino:
+../Engine-Loops.ino:
 
-../Operations-Methods.ino:
+../Engine-Serial_Messages.ino:
 
-../Serial-Messages.ino:
+../Engine.ino:
 
-../Stop-Listeners.ino:
+../Operations-Director.ino:
 
-../errorListener.ino:
+../Operations-Error_Handler.ino:
 
-../functionsSelect.ino:
+../Operations-Stop_Listener.ino:
 
-../loopedVoids.ino:
+../Operations-Type_1.ino:
 
-../startup.ino:
+../Settings-Functions_Select.ino:
 
-../startupMethods.ino:
+../Startup-Director.ino:
+
+../Startup-Methods.ino:
