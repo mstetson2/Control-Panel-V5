@@ -2,12 +2,13 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2016-09-13 02:44:10
+//This file has been generated on 2016-09-13 03:23:57
 
 #include "Arduino.h"
 #include <Arduino.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
+#include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
@@ -47,19 +48,17 @@ void blink250() ;
 void blink500() ;
 void blink1000() ;
 void lampsOff() ;
+void operationsLoops() ;
 void setModeLed() ;
-void restraints() ;
-void gates() ;
-void dispatchChecker() ;
-void dispatchAutoChecker() ;
-void dispatchManualChecker() ;
-void dispatchBypassChecker() ;
-void autoUnlock() ;
-void dispatch() ;
-void errorListeners() ;
+void typeChecker() ;
+void errorListener() ;
 void typeError() ;
 void eStopListener() ;
 void rideStopListener() ;
+void modeCheck1() ;
+void autoMode1() ;
+void manualMode1() ;
+void bypassMode1() ;
 void extraFunctionsChoose() ;
 void functionsSelect() ;
 void function1() ;
@@ -87,6 +86,7 @@ void finalStartup() ;
 #include "Engine-Loops.ino"
 #include "Engine-Serial_Messages.ino"
 #include "Engine.ino"
+#include "Operations-Backend.ino"
 #include "Operations-Director.ino"
 #include "Operations-Error_Handler.ino"
 #include "Operations-Stop_Listener.ino"

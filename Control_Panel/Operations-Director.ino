@@ -1,26 +1,21 @@
 #include <Arduino.h>
 
-void setModeLed() {
-  if (!modeAuto) {
-    if (functionEnabled) {
-      if (m250) {
-        digitalWrite(modeLed, HIGH);
-      } else {
-        digitalWrite(modeLed, LOW);
-      }
-    } else {
-      digitalWrite(modeLed, HIGH);
-    }
-  } else if (functionEnabled) {
-    if (m500) {
-      digitalWrite(modeLed, HIGH);
-    } else {
-      digitalWrite(modeLed, LOW);
-    }
-  } else {
-    digitalWrite(modeLed, LOW);
-  }
+void typeChecker() {
+	if(typeOne) {
+		modeCheck1();
+	} else if(typeTwo) {
+		//modeCheck2();
+	} else if(typeThree) {
+		//modeCheck3();
+	} else {
+		debugM("UNKNOWN MODE");
+	}
 }
+
+
+
+//OLD:
+/*
 
 void restraints() {
   if (restraintPressed) {
@@ -113,3 +108,5 @@ void dispatch() {
   dispatching = true;
   autoUnlocked = false;
 }
+*/
+

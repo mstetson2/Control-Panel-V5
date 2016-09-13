@@ -20,11 +20,7 @@ void loopedVoids() {
     }
   } else {
     //Operations
-    setModeLed();
-    eStopListener();
-    errorListeners();
-    rideStopListener();
-
+	operationsLoops();
   }
 }
 
