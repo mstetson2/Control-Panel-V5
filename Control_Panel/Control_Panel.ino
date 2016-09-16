@@ -2,19 +2,38 @@
 //  MATT STETSON
 //  stetson2@illinois.edu
 //  mstetson717@gmail.com
-String version = "5.0.0 dev 1";
+String version = "5.0.0 alpha 1";
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
 char slant[] = {
-    "//////////////////////////////////////////////////////////////" };
+    "/////////////////////////////////////////////" };
 char vert[] =
-    { "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" };
+    { "|||||||||||||||||||||||||||||||||||||||||||" };
 
 String space = "";
 String debug = "DEBUG: ";
+
+//OPS VARS:
+boolean down;
+boolean rideStop;
+boolean eStop;
+boolean error;
+int errorCode;
+
+boolean gatesLocked;
+boolean restraintsLocked;
+boolean floorDown;
+boolean flyerLocked;
+
+boolean dispatchReady; //used in type 2 and 3 to say floor ready to lower
+boolean dispatchClear;
+boolean dispatching;
+boolean dispatchDone;
+int dispatchCooldown;
+
 
 //--START OF INPUTS SETUP--
 //INPUTS:
@@ -23,7 +42,10 @@ String debug = "DEBUG: ";
 //const int trouble_pressed = 48;
 //const int emergency_stop_notpressed = 25;
 
-const int trouble_pressed = 25;
+//Additional:
+//25: old 2 pos keyswitch
+//32: old function enable
+const int trouble_pressed = 24;
 const int emergency_stop_notpressed = 48;
 const int control_power_on = 30;
 const int mode_auto_selected = 31;
@@ -80,14 +102,11 @@ int type;
 int prevType = 0;
 int prevMode = 0;
 
-boolean error;
-int errorCode;
-
 int hornTone = 150;
 //----- END OF INPUTS SETUP -----
 
 //START OF STARTUP VARS:======
-boolean booted;
+boolean booted = true;
 boolean preStarted;
 boolean startInitMessage;
 
@@ -125,7 +144,7 @@ boolean f3b;
 
 boolean lampTested;
 //SKIP STOP TEST:
-boolean stopTested = true;
+boolean stopTested;
 boolean extraFunctionsChoosed;
 boolean functionsSelected;
 boolean longWarninged;
@@ -140,7 +159,7 @@ boolean singleDispatch;
 boolean pTroubleAlarm;
 boolean pWarningHorn;
 boolean pWarningMessage;
-boolean timeout;
+boolean willTimeout;
 boolean quickTroubleReset;
 boolean quickEstopReset;
 boolean randomEvents;
@@ -165,10 +184,10 @@ long p250;
 long p500;
 long p1000;
 
-boolean restraintsLocked;
-boolean gatesClosed;
-boolean dispatching;
-boolean autoUnlocked;
+//boolean restraintsLocked;
+//boolean gatesClosed;
+//boolean dispatching;
+//boolean autoUnlocked;
 
 //=====END OF STARTUP VARS=====
 

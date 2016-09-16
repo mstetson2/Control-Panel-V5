@@ -42,10 +42,8 @@ void buttonStates() {
 
   if (digitalRead(ride_start_pressed) == !LOW) {
     ridestartPressed = false;
-    //digitalWrite(ridestartLed, LOW);
   } else {
     ridestartPressed = true;
-    //digitalWrite(ridestartLed, HIGH);
   }
 
   if (digitalRead(ride_stop_notpressed) != LOW) {
@@ -110,10 +108,12 @@ void buttonStates() {
     dispatchRPressed = false;
   }
 
-  if (dispatchLPressed == true && dispatchRPressed == true) {
+  if ((dispatchLPressed && dispatchRPressed) || (dispatchLPressed && singleDispatch)) {
     dispatchPressed = true;
   } else {
+	  if(!modeBypass) {
     dispatchPressed = false;
+	  }
   }
 }
 

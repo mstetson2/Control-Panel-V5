@@ -12,7 +12,7 @@ void sT(String m) {
 void bootCredits() {
 //PRINTS ON BOOTUP
 
-  char* creditMessage[] = { "Control Panel", "MATT STETSON",
+  String creditMessage[] = { "Control Panel", "MATT STETSON",
       "stetson2@illinois.edu", "Last Updated: 9/8/16" };
   Serial.println(space);
   Serial.println(slant[0]);
@@ -45,7 +45,7 @@ void disclaimer() {
 }
 
 void bootSerial(int bM) {
-  char* bM_[] =
+  String bM_[] =
       { "PANEL POWER IS OFF. SWITCH PANEL TO ON TO BEGIN STARTUP.",
           "SWITCH TO AUTO MODE TO BEGIN PHASE I STARTUP.",
           "ATTENTION: E-STOP TEST, E-STOP RESET, & WARNING HORN have been skipped. Please restart if this was a mistake." };
@@ -77,7 +77,7 @@ void bootSerial(int bM) {
 }
 
 void lampTestSerial(int ltM) {
-  char* m[] =
+  String m[] =
       {
           "Phase I startup: LAMP TEST: Ensure all lamps function correctly.",
           "Press ACKNOWLEDGE to confirm all lamps function properly and continue startup.",
@@ -87,7 +87,7 @@ void lampTestSerial(int ltM) {
           "Press and hold RIDE START for WARNING MESSAGE test",
           "Press RIDE STOP to bypass startup => MAINTAINENCE ONLY!",
           "LAMP TEST COMPLETE." };
-  char* eM[] = { "Cannot complete lamp test. \n Switch GATES to CLOSED." };
+  String eM[] = { "Cannot complete lamp test. \n Switch GATES to CLOSED." };
 
   switch (ltM) {
   case 1:
@@ -128,7 +128,7 @@ void lampTestSerial(int ltM) {
 }
 
 void stopTestSerial(int stM) {
-  char* p[] { "Switch to AUTO MODE to continue startup." };
+  String p[] { "Switch to AUTO MODE to continue startup." };
 
   char* m[] {
       "PHASE I STARTUP: STOP TEST; Ensure all stop buttons function correctly.",
@@ -199,7 +199,7 @@ void stopTestSerial(int stM) {
 }
 
 void longStartupSerial(int lsM) {
-  char* p[] { "Switch to AUTO MODE to continue startup." };
+  String p[] { "Switch to AUTO MODE to continue startup." };
 
   char* m[] { "PHASE II STARTUP: STARTUP WARNING",
       "STARTUP WARNING: CHECK THAT ALL GATES ARE SECURE AND RIDE AREA CLEAR!",
@@ -245,7 +245,7 @@ void longStartupSerial(int lsM) {
 
 void esrStartupSerial(int esrsM) {
 
-  char* p[] { "Switch to AUTO MODE to continue startup." };
+  String p[] { "Switch to AUTO MODE to continue startup." };
 
   char* m[] { "PHASE II STARTUP: E-STOP RESET",
       "E-STOP RESET: Press and hold RIDE START to reset ESR LOOP",
@@ -386,7 +386,7 @@ void functionPage1Serial(int fuM) {
 
 void functionPage2Serial(int fuM) {
 
-  char* page2[] = { "" };
+  //char* page2[] = { "" };
 
   switch (fuM) {
 

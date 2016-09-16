@@ -35,7 +35,7 @@ void booter() {
               } else {
                 //booted = true;
               }
-            }
+            }//TODO error reset
           }
         }
       }

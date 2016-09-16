@@ -12,10 +12,79 @@ void typeChecker() {
 	}
 }
 
+void dispatchReadyCheck() {
 
+	if(type == 1) {
+		if(gatesLocked && restraintsLocked) {
+			dispatchReady= true;
+		}
+		else {
+			dispatchReady = false;
+		}
+	}
+	else if(type == 2) {
+		if(gatesLocked && restraintsLocked) {
+			dispatchReady = true;
+			if(floorDown) {
+			dispatchClear = true;
+			}
+		}
+		else {
+			dispatchReady = false;
+			dispatchClear = false;
+		}
+	}
+	else if(type == 3) {
+		if(gatesLocked && restraintsLocked) {
+			dispatchReady = true;
+			if(flyerLocked) {
+			dispatchClear = true;
+			}
+		}
+		else {
+			dispatchReady = false;
+			dispatchClear = false;
+		}
+	}
+}
 
-//OLD:
-/*
+void dispatchIsReady() {
+	if(m1000) {
+		digitalWrite(dispatchLLed, HIGH);
+		digitalWrite(dispatchRLed, HIGH);
+	}
+	else {
+		digitalWrite(dispatchLLed, LOW);
+		digitalWrite(dispatchRLed, LOW);
+	}
+	if(dispatchPressed) {
+		dispatch();
+	}
+}
+
+void dispatch() {
+	if(!dispatching) {
+  digitalWrite(dispatchRLed, LOW);
+  digitalWrite(dispatchLLed, LOW);
+  digitalWrite(restraintLed, LOW);
+  //TODO send dispatch keyboard
+  dispatching = true;
+	}
+}
+
+void airgates() {
+	if(gatesOpen) {
+		if(gatesLocked) {
+			//TODO: send gates open keyboard
+			gatesLocked = false;
+		}
+	} else {
+		if(!gatesLocked) {
+			//TODO send gates close
+			gatesLocked = true;
+		}
+	}
+}
 
 void restraints() {
   if (restraintPressed) {
@@ -23,90 +92,21 @@ void restraints() {
       restraintsLocked = false;
       digitalWrite(restraintLed, LOW);
       sT("Restraints unlocked");
-      //send restraints
-      delay(500);
+      //TODO send restraints open
+      delay(100);
     } else {
       restraintsLocked = true;
       digitalWrite(restraintLed, HIGH);
       sT("Restraints locked");
-      //send lock
-      delay(500);
+      //TODO send lock
+      delay(100);
     }
   }
-}
-
-void gates() {
-
-}
-
-void dispatchChecker() {
-
-  if (mode = 1) {
-    dispatchAutoChecker();
-  } else if (mode = 2) {
-    dispatchManualChecker();
-  } else if (mode = 3) {
-    dispatchBypassChecker();
-  }
-
-}
-
-void dispatchAutoChecker() {
-
-  if (!gatesOpen && restraintsLocked) {
-    if (!singleDispatch) {
-      if (dispatchLPressed && dispatchRPressed) {
-        dispatch();
-      } else {
-        dispatching = false;
-      }
-    } else {
-      if (dispatchRPressed) {
-        dispatch();
-      }
-      dispatching = false;
-    }
-    if (m1000) {
-      if (!singleDispatch) {
-        digitalWrite(dispatchLLed, HIGH);
-      }
-      digitalWrite(dispatchRLed, HIGH);
-    } else {
-      if (!dispatching) {
-        digitalWrite(dispatchLLed, LOW);
-        digitalWrite(dispatchRLed, LOW);
-      }
-    }
-  }
-  if (rAutoUnlock) {
-    autoUnlock();
-  }
-
-}
-
-void dispatchManualChecker() {
-
-}
-
-void dispatchBypassChecker() {
-
 }
 
 void autoUnlock() {
-  if (!dispatching && !autoUnlocked) {
-    //send unlock
+    //TODO send unlock
+	restraintsLocked = false;
     digitalWrite(restraintLed, LOW);
     Serial.println("Restraints unlocked because train stopped.");
-    autoUnlocked = true;
   }
-}
-
-void dispatch() {
-  digitalWrite(dispatchRLed, HIGH);
-  digitalWrite(dispatchLLed, LOW);
-  //send dispatch keyboard
-  dispatching = true;
-  autoUnlocked = false;
-}
-*/
-
