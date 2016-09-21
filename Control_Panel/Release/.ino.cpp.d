@@ -16,7 +16,7 @@
  ../Control_Panel.ino ../Engine-LCD.ino ../Engine-Loops.ino \
  ../Engine-Serial_Messages.ino ../Engine-Wire_Connection.ino \
  ../Engine.ino ../Operations-Backend.ino ../Operations-Director.ino \
- ../Operations-Error_Handler.ino ../Operations-Stop_Listener.ino \
+ ../Operations-Error_Handler.ino ../Operations-Stop_Controller.ino \
  ../Operations-Type_1.ino ../Operations-Vars.ino \
  ../Settings-Functions_Select.ino ../Startup-Director.ino \
  ../Startup-Methods.ino
@@ -67,7 +67,7 @@ C:\dev\Programs\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.13\libra
 
 ../Operations-Error_Handler.ino:
 
-../Operations-Stop_Listener.ino:
+../Operations-Stop_Controller.ino:
 
 ../Operations-Type_1.ino:
 

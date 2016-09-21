@@ -1,7 +1,0 @@
-void eStopListener() {
-
-}
-
-void rideStopListener() {
-
-}

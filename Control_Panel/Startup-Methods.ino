@@ -349,6 +349,17 @@ void estopResetComplete() {
 }
 
 void finalStartup() {
-
+	if(m500) {
+		digitalWrite(ridestartLed, HIGH);
+	}
+	else {
+		digitalWrite(ridestartLed, LOW);
+	}
+	if(ridestartPressed) {
+		finalStartupComplete();
+	}
+}
+void finalStartupComplete() {
+	finalStarted = true;
 }
 

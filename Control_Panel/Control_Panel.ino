@@ -18,22 +18,11 @@ String debug = "DEBUG: ";
 
 //OPS VARS:
 boolean down;
+boolean stop;
 boolean rideStop;
 boolean eStop;
 boolean error;
 int errorCode;
-
-boolean gatesLocked;
-boolean restraintsLocked;
-boolean floorDown;
-boolean flyerLocked;
-
-boolean dispatchReady; //used in type 2 and 3 to say floor ready to lower
-boolean dispatchClear;
-boolean dispatching;
-boolean dispatchDone;
-int dispatchCooldown;
-
 
 //--START OF INPUTS SETUP--
 //INPUTS:
@@ -106,7 +95,7 @@ int hornTone = 150;
 //----- END OF INPUTS SETUP -----
 
 //START OF STARTUP VARS:======
-boolean booted = true;
+boolean booted;
 boolean preStarted;
 boolean startInitMessage;
 
@@ -142,18 +131,18 @@ boolean f3;
 boolean f3a;
 boolean f3b;
 
-boolean lampTested;
+boolean lampTested = true;
 //SKIP STOP TEST:
-boolean stopTested;
+boolean stopTested = true;
 boolean extraFunctionsChoosed;
 boolean functionsSelected;
-boolean longWarninged;
-boolean estopReseted;
-boolean finalStarted;
-boolean finalWarninged;
+boolean longWarninged = true;
+boolean estopReseted = true;
+boolean finalStarted = true;
+boolean finalWarninged = true;
 boolean extraFunctionsChoosing;
 
-boolean rAutoUnlock;
+boolean rAutoUnlock = true;
 boolean supervisorMode;
 boolean singleDispatch;
 boolean pTroubleAlarm;
@@ -193,7 +182,7 @@ long p1000;
 
 //FOR LCD:
 SoftwareSerial LCD = SoftwareSerial(0, 14);
-const int LCDdelay = 10;  // conservative, 2 actually works
+const int LCDdelay = 2;  // conservative, 2 actually works
 
 void setup() {
   Serial.begin(9600);

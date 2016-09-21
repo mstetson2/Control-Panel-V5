@@ -9,12 +9,18 @@
 //9XX:
 
 void errorListener() {
-  typeError();
+  //typeError();
   if (modeAuto) {
     //autoAcknowledge();
   }
 }
 
+void rideError(int e) {
+	error = true;
+	errorCode = e;
+}
+
+/*
 void typeError() {
   boolean prevTypeInit;
   if (!prevTypeInit) {
@@ -27,4 +33,5 @@ void typeError() {
   }
 
 }
+*/
 

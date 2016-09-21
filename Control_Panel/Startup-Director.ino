@@ -30,10 +30,10 @@ void booter() {
             if (!estopReseted) {
               estopResetStartup();
             } else {
-              if (finalStarted) {
+              if (!finalStarted) {
                 finalStartup();
               } else {
-                //booted = true;
+                bootComplete();
               }
             }//TODO error reset
           }
@@ -50,6 +50,13 @@ void booter() {
       s5 = false;
     }
   }
+}
+
+void bootComplete() {
+	restraintsLocked = true;
+	digitalWrite(restraintLed, HIGH);
+	gatesLocked = true;
+	booted = true;
 }
 
 //Sets the booleans for the serial to false

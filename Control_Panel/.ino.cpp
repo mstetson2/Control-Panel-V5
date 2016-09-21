@@ -2,12 +2,13 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2016-09-16 18:21:15
+//This file has been generated on 2016-09-21 03:09:30
 
 #include "Arduino.h"
 #include <Arduino.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
+#include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
@@ -27,7 +28,6 @@ void backlightOff();
 void serCommand();
 void lcdN() ;
 void loopedVoids() ;
-void blinkPowerLed() ;
 void sT(String m) ;
 void bootCredits() ;
 void disclaimer() ;
@@ -58,9 +58,17 @@ void airgates() ;
 void restraints() ;
 void autoUnlock() ;
 void errorListener() ;
-void typeError() ;
-void eStopListener() ;
-void rideStopListener() ;
+void rideError(int e) ;
+void stopListener() ;
+void eStopController() ;
+void eStopHandle() ;
+void eStopResetHandle() ;
+void rideStopController() ;
+void rideStopHandle() ;
+void rideStopResetHandle() ;
+void stopReset() ;
+void stopBlinker() ;
+void setPowerLed() ;
 void modeCheck1() ;
 void autoMode1() ;
 void manualMode1() ;
@@ -71,6 +79,7 @@ void function1() ;
 void function2() ;
 void function3() ;
 void booter() ;
+void bootComplete() ;
 void bFalse() ;
 void estopBlinkBoot() ;
 void lampTest() ;
@@ -85,6 +94,7 @@ void longWarningComplete() ;
 void estopResetStartup() ;
 void estopResetComplete() ;
 void finalStartup() ;
+void finalStartupComplete() ;
 
 #include "Control_Panel.ino"
 
@@ -96,7 +106,7 @@ void finalStartup() ;
 #include "Operations-Backend.ino"
 #include "Operations-Director.ino"
 #include "Operations-Error_Handler.ino"
-#include "Operations-Stop_Listener.ino"
+#include "Operations-Stop_Controller.ino"
 #include "Operations-Type_1.ino"
 #include "Operations-Vars.ino"
 #include "Settings-Functions_Select.ino"

@@ -2,21 +2,19 @@
 
 void operationsLoops() {
     setModeLed();
-    rideStopListener(); //in stop listener
-    eStopListener(); //in stop listener
+    stopListener();
     errorListener(); //in error listener
-    //if(!down) {
-    typeChecker(); //in director
-    //}
+    setPowerLed();
+    if(!stop) {
+    	typeChecker();
+    	stopBlinker();
+    }
+    else {
+    	if(!estopPressed) {
+    	stopReset();
+    	}
+    }
 }
-/*
-void downChecker() {
-	if(error != 0) {
-		down = true;
-	}
-	if()
-}
-*/
 
 //sets the mode Led based on functionEnabled? and the mode
 void setModeLed() {

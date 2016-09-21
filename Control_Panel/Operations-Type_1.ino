@@ -18,16 +18,17 @@ void autoMode1() {
 		airgates();
 		restraints();
 		dispatchReadyCheck();
-
-		if(dispatchReady) {
-			dispatchIsReady();
-		}
+		dispatchIsReady();
 	}
 	else {
 		if(dispatchPressed) {
 
 		}
 		else {
+			lcdC();
+			LCD.print("AIRGATES:    OK!");
+			lcdN();
+			LCD.print("RESTRAINTS:  OK!");
 			dispatchDone = true;
 			dispatchReady = false;
 			if(rAutoUnlock) {
