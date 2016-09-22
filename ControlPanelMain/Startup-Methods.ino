@@ -99,7 +99,7 @@ void skipBoot() {
   booted = true;
   lampTested = true;
   stopTested = true;
-  extraFunctionsChoosed = true;
+  functionSelectStartup = true;
   estopReseted = true;
   finalWarninged = true;
   lampsOff();
@@ -268,18 +268,6 @@ void longWarning() {
         if (!ridestartPressed) {
           digitalWrite(ridestartLed, LOW);
         }
-      }
-
-      if (functionEnabled && !functionsSelected) {
-        if (m1000) {
-          digitalWrite(restraintLed, HIGH);
-        } else {
-          digitalWrite(restraintLed, LOW);
-        }
-        if (restraintPressed) {
-          extraFunctionsChoosing = true;
-        }
-
       }
     }
   } else {

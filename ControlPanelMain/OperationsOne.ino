@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+
+
 void modeCheck1() {
 	if(modeAuto) {
 		autoMode1();

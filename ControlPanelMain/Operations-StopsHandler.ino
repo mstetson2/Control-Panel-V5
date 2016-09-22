@@ -59,6 +59,7 @@ void eStopHandle() {
 	rideError(150);
 	if(!keyboardStopSent) {
 		//TODO send keyboard e-stop
+		kEstop();
 		keyboardStopSent = true;
 	}
 
@@ -84,7 +85,6 @@ void rideStopController() {
 			digitalWrite(ridestopLed, HIGH);
 		}
 	}
-
 }
 void rideStopHandle() {
 	lampsOff();
@@ -113,10 +113,7 @@ void rideStopResetHandle() {
 	delay(500);
 }
 
-
-
 void stopReset() {
-
 	if (eStop) {
 		if (modeBypass) {
 			lcdC();
@@ -125,7 +122,6 @@ void stopReset() {
 			LCD.print("TO ESR RESET");
 
 			if (esrHoldCounter < 5) {
-				//Serial.println(esrHoldCounter);
 				if (ridestartPressed) {
 					digitalWrite(ridestartLed, HIGH);
 					esrHoldCounter++;
@@ -160,8 +156,23 @@ void stopReset() {
 		//lcdN();
 		//LCD.print("TO  RESET");
 
+		if(functionEnabled) {
+			if(m1000) {
+				digitalWrite(restraintLed, HIGH);
+			}
+			else {
+				digitalWrite(restraintLed, LOW);
+			}
+		}
+		else {
+			digitalWrite(restraintLed, LOW);
+		}
+
+		if(restraintPressed) {
+			functionSelect = true;
+		}
+
 		if (startHoldCounter < 10) {
-			//Serial.println(esrHoldCounter);
 			if (ridestartPressed) {
 				digitalWrite(ridestartLed, HIGH);
 				startHoldCounter++;

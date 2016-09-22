@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2016-09-21 03:09:30
+//This file has been generated on 2016-09-22 04:15:01
 
 #include "Arduino.h"
 #include <Arduino.h>
@@ -19,8 +19,21 @@
 #include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
+#include <Arduino.h>
 void setup() ;
 void loop() ;
+void wireConnect() ;
+void kClear() ;
+void kEstop() ;
+void kDispatch() ;
+void kOpenGates() ;
+void kCloseGates() ;
+void kOpenRestraints() ;
+void kCloseRestraints() ;
+void kRaiseFloor() ;
+void kLowerFloor() ;
+void kLockFlyer() ;
+void kUnlockFlyer() ;
 void lcdPosition(int row, int col) ;
 void lcdC();
 void backlightOn() ;
@@ -59,6 +72,13 @@ void restraints() ;
 void autoUnlock() ;
 void errorListener() ;
 void rideError(int e) ;
+void functionRequestHandler() ;
+void startupFunctionPrompt() ;
+void functionsPageSelect() ;
+void functionsSelect() ;
+void function1() ;
+void function2() ;
+void function3() ;
 void stopListener() ;
 void eStopController() ;
 void eStopHandle() ;
@@ -73,11 +93,6 @@ void modeCheck1() ;
 void autoMode1() ;
 void manualMode1() ;
 void bypassMode1() ;
-void extraFunctionsChoose() ;
-void functionsSelect() ;
-void function1() ;
-void function2() ;
-void function3() ;
 void booter() ;
 void bootComplete() ;
 void bFalse() ;
@@ -96,20 +111,19 @@ void estopResetComplete() ;
 void finalStartup() ;
 void finalStartupComplete() ;
 
-#include "Control_Panel.ino"
+#include "ControlPanelMain.ino"
 
-#include "Engine-LCD.ino"
+#include "Engine-Devices.ino"
 #include "Engine-Loops.ino"
-#include "Engine-Serial_Messages.ino"
-#include "Engine-Wire_Connection.ino"
+#include "Engine-Serial.ino"
 #include "Engine.ino"
 #include "Operations-Backend.ino"
 #include "Operations-Director.ino"
-#include "Operations-Error_Handler.ino"
-#include "Operations-Stop_Controller.ino"
-#include "Operations-Type_1.ino"
-#include "Operations-Vars.ino"
-#include "Settings-Functions_Select.ino"
+#include "Operations-ErrorHandler.ino"
+#include "Operations-Functions.ino"
+#include "Operations-Memory.ino"
+#include "Operations-StopsHandler.ino"
+#include "OperationsOne.ino"
 #include "Startup-Director.ino"
 #include "Startup-Methods.ino"
 

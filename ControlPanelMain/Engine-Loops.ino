@@ -1,0 +1,27 @@
+#include <Arduino.h>
+
+void loopedVoids() {
+
+	//Serial.println(connection);
+
+	//ALWAYS:
+	blink100();
+	blink250();
+	blink500();
+	blink1000();
+	buttonStates();
+
+	//set which methods will be running depending on if booted or not
+	if (booted == false) {
+		booter();
+	} else {
+		//Operations
+		operationsLoops();
+	}
+
+	  //temp for wire
+	  if(!connection) {
+	  wireConnect();
+	}
+}
+

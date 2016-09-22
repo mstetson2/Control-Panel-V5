@@ -2,11 +2,13 @@
 //  MATT STETSON
 //  stetson2@illinois.edu
 //  mstetson717@gmail.com
-String version = "5.0.0 alpha 1";
+
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
+
+String version = "5.0.0 alpha 1";
 
 char slant[] = {
     "/////////////////////////////////////////////" };
@@ -24,6 +26,8 @@ boolean eStop;
 boolean error;
 int errorCode;
 
+
+boolean connection;
 //--START OF INPUTS SETUP--
 //INPUTS:
 
@@ -95,7 +99,7 @@ int hornTone = 150;
 //----- END OF INPUTS SETUP -----
 
 //START OF STARTUP VARS:======
-boolean booted;
+
 boolean preStarted;
 boolean startInitMessage;
 
@@ -131,16 +135,17 @@ boolean f3;
 boolean f3a;
 boolean f3b;
 
+boolean booted;
+
 boolean lampTested = true;
 //SKIP STOP TEST:
 boolean stopTested = true;
-boolean extraFunctionsChoosed;
-boolean functionsSelected;
+boolean functionSelectStartup = true;
+//boolean functionsSelected;
 boolean longWarninged = true;
 boolean estopReseted = true;
 boolean finalStarted = true;
 boolean finalWarninged = true;
-boolean extraFunctionsChoosing;
 
 boolean rAutoUnlock = true;
 boolean supervisorMode;
@@ -193,6 +198,9 @@ void setup() {
   LCD.begin(9600);
   lcdC();
   lcdPosition(0, 0);
+
+  //For Wire (Keyboard) Communication:
+  Wire.begin(); // join i2c bus (address optional for master)
 
   //INPUTS
   pinMode(trouble_pressed, INPUT);
