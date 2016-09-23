@@ -1,40 +1,29 @@
-//  ARDUINO CONTROL PANEL
-//  MATT STETSON
-//  stetson2@illinois.edu
-//  mstetson717@gmail.com
-
-
+/* Arduino Control Panel
+ * Meant for use with NoLimits Coaster Simulation
+ * By Matt Stetson
+ * stetson2@illinois.edu
+ * mstetson717@gmail.com
+ *
+ * Started:
+ * Last Edited: 9/23/2016
+ */
 #include <Arduino.h>
-#include <Wire.h>
-#include <SoftwareSerial.h>
+#include <Wire.h> //Used to communicate between the Arduino Due and Mega. This Arduino (mega) sends commands to the Due to send Keyboard strokes to the PC to control the simulation.
+#include <SoftwareSerial.h> //Used for the LCD screen.
 
 String version = "5.0.0 alpha 1";
 
-char slant[] = {
-    "/////////////////////////////////////////////" };
-char vert[] =
-    { "|||||||||||||||||||||||||||||||||||||||||||" };
-
-String space = "";
-String debug = "DEBUG: ";
-
-//OPS VARS:
-boolean down;
-boolean stop;
-boolean rideStop;
-boolean eStop;
-boolean error;
-int errorCode;
-
+boolean lampTested = true;
+boolean stopTested = true;
+boolean functionSelectStartup = true;
+boolean longWarninged = true;
+boolean estopReseted = true;
+boolean finalStarted = true;
+boolean finalWarninged = true;
 
 boolean connection;
 //--START OF INPUTS SETUP--
 //INPUTS:
-
-//FOR QUIET E-STOP:
-//const int trouble_pressed = 48;
-//const int emergency_stop_notpressed = 25;
-
 //Additional:
 //25: old 2 pos keyswitch
 //32: old function enable
@@ -53,9 +42,7 @@ const int restraint_pressed = 40;
 const int dispatch_l_pressed = 29;
 const int dispatch_r_pressed = 44;
 const int airgates_closed = 42;
-//virtual inputs
 //OUTPUTS:
-//HARDWARE:
 const int powerLed = 37;
 const int modeLed = 39;
 const int troubleLed = 41;
@@ -67,7 +54,9 @@ const int restraintLed = 47;
 const int dispatchLLed = 43;
 const int dispatchRLed = 49;
 const int warning_horn = 5;
-
+//FOR LCD:
+SoftwareSerial LCD = SoftwareSerial(0, 14);
+const int LCDdelay = 2;  // conservative, 2 actually works
 boolean troublePressed;
 boolean estopPressed;
 boolean panelOn;
@@ -91,61 +80,13 @@ boolean estopActive;
 
 int mode;
 int type;
-
 int prevType = 0;
 int prevMode = 0;
 
 int hornTone = 150;
 //----- END OF INPUTS SETUP -----
 
-//START OF STARTUP VARS:======
-
-boolean preStarted;
-boolean startInitMessage;
-
-int startMessage = 0;
-boolean s1;
-boolean s2;
-boolean s3;
-boolean s4;
-boolean s5;
-
-boolean b1;
-boolean b2;
-boolean b3;
-boolean b4;
-boolean b5;
-boolean b6;
-boolean b7;
-boolean b8;
-boolean b9;
-boolean b10;
-
-boolean i1;
-boolean i2;
-boolean i3;
-
-boolean f1;
-boolean f1a;
-boolean f1b;
-boolean f2;
-boolean f2a;
-boolean f2b;
-boolean f3;
-boolean f3a;
-boolean f3b;
-
 boolean booted;
-
-boolean lampTested = true;
-//SKIP STOP TEST:
-boolean stopTested = true;
-boolean functionSelectStartup = true;
-//boolean functionsSelected;
-boolean longWarninged = true;
-boolean estopReseted = true;
-boolean finalStarted = true;
-boolean finalWarninged = true;
 
 boolean rAutoUnlock = true;
 boolean supervisorMode;
@@ -164,41 +105,12 @@ boolean lightCurtain;
 boolean trainNoDispatch;
 boolean weatherDowntimes;
 
-int bM;
-int ltM;
-int stM;
-
-boolean m100;
-boolean m250;
-boolean m500;
-boolean m1000;
-
-long p100;
-long p250;
-long p500;
-long p1000;
-
-//boolean restraintsLocked;
-//boolean gatesClosed;
-//boolean dispatching;
-//boolean autoUnlocked;
-
-//=====END OF STARTUP VARS=====
-
-//FOR LCD:
-SoftwareSerial LCD = SoftwareSerial(0, 14);
-const int LCDdelay = 2;  // conservative, 2 actually works
-
 void setup() {
   Serial.begin(9600);
-  //Serial2.begin(9600);
-  //Serial3.begin(9600);
-
   //FOR LCD:
   LCD.begin(9600);
   lcdC();
   lcdPosition(0, 0);
-
   //For Wire (Keyboard) Communication:
   Wire.begin(); // join i2c bus (address optional for master)
 
@@ -231,7 +143,6 @@ void setup() {
   pinMode(dispatchRLed, OUTPUT);
   //pinMode(warning_horn, OUTPUT);
   //^is analog
-
   digitalWrite(trouble_pressed, HIGH);
   digitalWrite(emergency_stop_notpressed, HIGH);
   digitalWrite(control_power_on, HIGH);
@@ -247,7 +158,6 @@ void setup() {
   digitalWrite(dispatch_l_pressed, HIGH);
   digitalWrite(dispatch_r_pressed, HIGH);
   digitalWrite(airgates_closed, HIGH);
-
 }
 
 void loop() {

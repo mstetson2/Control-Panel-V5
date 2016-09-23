@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2016-09-22 04:15:01
+//This file has been generated on 2016-09-23 02:56:44
 
 #include "Arduino.h"
 #include <Arduino.h>
@@ -70,8 +70,13 @@ void dispatch() ;
 void airgates() ;
 void restraints() ;
 void autoUnlock() ;
-void errorListener() ;
 void rideError(int e) ;
+void errorController() ;
+void errorHandler() ;
+void errorView() ;
+void errorReset() ;
+void errorClearHandle() ;
+void errorListener() ;
 void functionRequestHandler() ;
 void startupFunctionPrompt() ;
 void functionsPageSelect() ;
@@ -111,7 +116,7 @@ void estopResetComplete() ;
 void finalStartup() ;
 void finalStartupComplete() ;
 
-#include "ControlPanelMain.ino"
+#include "Control-Panel.ino"
 
 #include "Engine-Devices.ino"
 #include "Engine-Loops.ino"

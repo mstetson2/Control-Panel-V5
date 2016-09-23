@@ -13,7 +13,7 @@
  C:\MiscPrograms\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.14\libraries\Wire\src/Wire.h \
  C:\MiscPrograms\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.14\cores\arduino/Stream.h \
  C:\MiscPrograms\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.14\libraries\SoftwareSerial\src/SoftwareSerial.h \
- ../ControlPanelMain.ino ../Engine-Devices.ino ../Engine-Loops.ino \
+ ../Control-Panel.ino ../Engine-Devices.ino ../Engine-Loops.ino \
  ../Engine-Serial.ino ../Engine.ino ../Operations-Backend.ino \
  ../Operations-Director.ino ../Operations-ErrorHandler.ino \
  ../Operations-Functions.ino ../Operations-Memory.ino \
@@ -48,7 +48,7 @@ C:\MiscPrograms\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.14\cores
 
 C:\MiscPrograms\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.14\libraries\SoftwareSerial\src/SoftwareSerial.h:
 
-../ControlPanelMain.ino:
+../Control-Panel.ino:
 
 ../Engine-Devices.ino:
 

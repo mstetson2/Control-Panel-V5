@@ -1,9 +1,8 @@
 #include <Arduino.h>
 
+
+
 void loopedVoids() {
-
-	//Serial.println(connection);
-
 	//ALWAYS:
 	blink100();
 	blink250();

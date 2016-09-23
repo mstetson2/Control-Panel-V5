@@ -27,7 +27,7 @@ void stopListener() {
 		stop = true;
 	}
 	if (error) {
-		//stop = true;
+		errorController();
 	}
 	if (eStop) {
 		eStopController();
@@ -146,9 +146,7 @@ void stopReset() {
 		}
 
 	} else if (error) {
-		if(modeManual) {
-		error = false;
-		}
+		errorReset();
 
 	} else if (stop) {
 		lcdC();

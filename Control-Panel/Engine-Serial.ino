@@ -1,17 +1,50 @@
+/*
+ *
+ */
 #include <Arduino.h>
 
-//Serial: Computer serial (Pins 0,1)
-//Serial1: LCD Screen (18,19)
-//Serial2: Bluetooth (16,17)
-//Serial3: Keyboard (14,15)
+char slant[] = {
+    "/////////////////////////////////////////////" };
+char vert[] =
+    { "|||||||||||||||||||||||||||||||||||||||||||" };
+String space = "";
+String debug = "DEBUG: ";
+int bM;
+int ltM;
+int stM;
+boolean preStarted;
+boolean startInitMessage;
+boolean s1;
+boolean s2;
+boolean s3;
+boolean s4;
+boolean s5;
+boolean b1;
+boolean b2;
+boolean b3;
+boolean b4;
+boolean b5;
+boolean b6;
+boolean b7;
+boolean b8;
+boolean b9;
+boolean b10;
+boolean f1;
+boolean f1a;
+boolean f1b;
+boolean f2;
+boolean f2a;
+boolean f2b;
+boolean f3;
+boolean f3a;
+boolean f3b;
 
 void sT(String m) {
   Serial.println(m);
 }
 
 void bootCredits() {
-//PRINTS ON BOOTUP
-
+//Prints when panel is booting
   String creditMessage[] = { "Control Panel", "MATT STETSON",
       "stetson2@illinois.edu", "Last Updated: 9/8/16" };
   Serial.println(space);
@@ -408,3 +441,10 @@ void debugM(String dbMessage) {
   delay(10);
 }
 
+
+
+
+//Serial: Computer serial (Pins 0,1)
+//Serial1: LCD Screen (18,19)
+//Serial2: Bluetooth (16,17)
+//Serial3: Keyboard (14,15)

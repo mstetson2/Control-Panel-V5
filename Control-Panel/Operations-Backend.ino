@@ -1,9 +1,17 @@
 #include <Arduino.h>
 
+//OPS VARS:
+boolean down;
+boolean stop;
+boolean rideStop;
+boolean eStop;
+boolean error;
+int errorCode;
+
+
 void operationsLoops() {
     setModeLed();
     stopListener();
-    errorListener(); //in error listener
     setPowerLed();
     if(!stop) {
     	typeChecker();
@@ -39,3 +47,7 @@ void setModeLed() {
     digitalWrite(modeLed, LOW);
   }
 }
+
+
+
+
