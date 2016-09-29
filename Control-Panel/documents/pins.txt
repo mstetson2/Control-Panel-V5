@@ -1,0 +1,41 @@
+Output
+====
+powerLed	37
+manualLed	39 
+troubleLed	41
+estopLed	53
+esrResetLed	51
+ridestartLed	52
+ridestopLed	28
+acknowledgeLed	45
+opsLed		27
+dispatchLLed	43
+restraintLed	47
+dispatchRLed	49
+
+=======
+
+INPUT:
+====
+trouble_pressed			50
+emergency_stop_notpressed	48
+control_power_on		30	
+mode_auto_selected		31
+mode_bypass_selected		33
+esr_reset_pressed		46
+function_enable_enabled		24
+type_1_selected			36
+type_3_selected			35
+ride_start_pressed		42
+ride_stop_notpressed		32
+acknowledge_pressed		25
+ops_pressed			38
+dispatch_l_pressed		29
+airgates_closed			34
+hmi_enable_pressed		26
+restraint_pressed		40
+dispatch_r_pressed		44
+warning_beeper			A10
+speaker				A9
+=====
+	

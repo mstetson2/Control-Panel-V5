@@ -17,10 +17,5 @@ void loopedVoids() {
 		//Operations
 		operationsLoops();
 	}
-
-	  //temp for wire
-	  if(!connection) {
-	  wireConnect();
-	}
 }
 

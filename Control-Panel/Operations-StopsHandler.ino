@@ -67,7 +67,7 @@ void eStopHandle() {
 }
 void eStopResetHandle() {
 
-	digitalWrite(ridestartLed, LOW);
+	digitalWrite(esrLed, LOW);
 	digitalWrite(estopLed, LOW);
 	esrHoldCounter = 0;
 	eStop = false;
@@ -115,27 +115,32 @@ void rideStopResetHandle() {
 
 void stopReset() {
 	if (eStop) {
+		l("E-STOP PRESSED", 0);
 		if (modeBypass) {
 			lcdC();
 			LCD.print("PRESS RIDE START");
 			lcdN();
 			LCD.print("TO ESR RESET");
+			l("To reset ESR loop:",2);
+			l("Press ESR RESET",3);
 
-			if (esrHoldCounter < 5) {
-				if (ridestartPressed) {
-					digitalWrite(ridestartLed, HIGH);
-					esrHoldCounter++;
-				} else {
-					if (m500) {
-						digitalWrite(ridestartLed, HIGH);
-					} else {
-						digitalWrite(ridestartLed, LOW);
-					}
-					esrHoldCounter = 0;
+			if (esrPressed) {
+				digitalWrite(esrLed, HIGH);
+				if (!pSent) {
+					m = millis();
+					pSent = true;
 				}
-			}
-			else {
-				eStopResetHandle();
+				isHeld = buttonHold(2000, m);
+				if (isHeld) {
+				      eStopResetHandle();
+				}
+			} else {
+				if (m250) {
+					digitalWrite(esrLed, HIGH);
+				} else {
+					digitalWrite(esrLed, LOW);
+				}
+				pSent = false;
 			}
 
 		} else {
@@ -143,6 +148,9 @@ void stopReset() {
 			LCD.print("E-STOP ACTIVE");
 			lcdN();
 			LCD.print("Switch to BYPASS!");
+			l("Switch to BYPASS",3);
+
+
 		}
 
 	} else if (error) {
@@ -204,10 +212,6 @@ void stopBlinker() {
 void setPowerLed() {
 	if (panelOn) {
 		digitalWrite(powerLed, HIGH);
-		lcdC();
-		LCD.print("STATUS: 000");
-		lcdN();
-		LCD.print("PANEL KEY OFF");
 	} else {
 		stop = true;
 		eStop = true;

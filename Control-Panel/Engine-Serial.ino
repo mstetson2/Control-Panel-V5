@@ -86,18 +86,14 @@ void bootSerial(int bM) {
   switch (bM) {
   case 1:
     Serial.println(bM_[0]);
-    lcdC();
-    LCD.print("STATUS 001:");
-    lcdPosition(1, 0);
-    LCD.print("PANEL POWER OFF");
+    l("STATUS 001:",0);
+    l("PANEL POWER OFF",1);
     break;
   case 2:
     Serial.println(bM_[1]);
     s1 = true;
-    lcdC();
-    LCD.print("STATUS 002:");
-    lcdN();
-    LCD.print("SWITCH TO AUTO");
+    l("STATUS 002:",0);
+    l("SWITCH TO AUTO",1);
     break;
   case 3:
     Serial.println(bM_[2]);
@@ -127,10 +123,12 @@ void lampTestSerial(int ltM) {
     Serial.println(m[0]);
     Serial.println(m[1]);
     Serial.println(space);
-    lcdC();
-    LCD.print("LAMP TEST: PRESS");
-    lcdN();
-    LCD.print("ACK TO CONTINUE");
+    lcd.clear();
+    lcd.print("STARTUP: PHASE I");
+    lp(0,1);
+    lcd.print("LAMP TEST");
+    lp(0,3);
+    lcd.print("Press ACKNOWLEDGE");
     b1 = true;
     break;
   case 2:
@@ -177,18 +175,19 @@ void stopTestSerial(int stM) {
   switch (stM) {
   case 1:
     Serial.println(p[0]);
-    lcdC();
-    LCD.print("STOP TEST:");
-    lcdN();
-    LCD.print("SWITCH TO AUTO");
+    lcd.clear();
+    lcd.print("STARTUP: PHASE I");
+    lp(0,1);
+    lcd.print("STOP TEST");
+    lp(0,3);
+    lcd.print("SWITCH TO AUTO");
+
     b1 = true;
     break;
   case 2:
     Serial.println(m[0]);
-    lcdC();
-    LCD.print("STOP TEST:");
-    lcdN();
-    LCD.print("PRESS RIDE STOP");
+    ln(3);
+    lcd.print("Press RIDE STOP");
     b2 = true;
     break;
   case 3:
@@ -201,27 +200,23 @@ void stopTestSerial(int stM) {
     break;
   case 5:
     Serial.println(m[3]);
-    lcdC();
-    LCD.print("STOP TEST:");
-    lcdN();
-    LCD.print("PRESS E-STOP");
+    ln(3);
+    lcd.print("Press EMERGENCY STOP");
     b5 = true;
     break;
   case 6:
     Serial.println(m[4]);
-    lcdC();
-    LCD.print("STOP TEST:");
-    lcdN();
-    LCD.print("PULL E-STOP");
+    ln(3);
+    lcd.print("Pull EMERGENCY STOP ");
     b6 = true;
     break;
   case 7:
     Serial.println(m[5]);
     Serial.println(m[6]);
-    lcdC();
-    LCD.print("STOP TEST: OK");
-    lcdN();
-    LCD.print("PRESS ACK");
+    ln(2);
+    lcd.print("Stop test complete");
+    ln(3);
+    lcd.print("Press ACKNOWLEDGE   ");
     b7 = true;
     break;
 
@@ -245,26 +240,23 @@ void longStartupSerial(int lsM) {
   switch (lsM) {
   case 1:
     Serial.println(p[0]);
-    lcdC();
-    LCD.print("STARTUP WARNING:");
-    lcdN();
-    LCD.print("SWITCH TO AUTO");
+    lcd.clear();
+    l("STARTUP: PHASE II",0);
+    l("STARTUP WARNING",1);
+    l("Switch to AUTO MODE",3);
     break;
   case 2:
     Serial.println(m[0]);
     Serial.println(m[1]);
     Serial.println(m[2]);
-    lcdC();
-    LCD.print("CHECK RIDE AREA!!");
-    lcdN();
-    LCD.print("PRESS ACKNOWLDGE");
+    l("CHECK RIDE AREA!!",2);
+    l("Press ACKNOWLEDGE",3);
     break;
   case 3:
     Serial.println(m[3]);
     lcdC();
-    LCD.print("STARTUP WARNING:");
-    lcdN();
-    LCD.print("PRESS RIDE START");
+    l("",2);
+    l("Hold RIDE START",3);
     break;
   case 4:
     Serial.println(m[4]);
@@ -293,6 +285,10 @@ void esrStartupSerial(int esrsM) {
     LCD.print("E-STOP RESET:");
     lcdN();
     LCD.print("SWITCH TO AUTO");
+    lcd.clear();
+    l("STARTUP: PHASE II",0);
+    l("E-STOP RESET",1);
+    l("Switch to AUTO MODE",3);
     break;
   case 2:
     Serial.println(m[0]);
@@ -301,6 +297,8 @@ void esrStartupSerial(int esrsM) {
     LCD.print("E-STOP RESET:");
     lcdN();
     LCD.print("PRESS RIDE START");
+    l("To reset esr loop:",2);
+    l("Hold ESR RESET",3);
     break;
   case 3:
     Serial.println(m[2]);
@@ -309,6 +307,40 @@ void esrStartupSerial(int esrsM) {
     debugM("ESRSTART SERIAL");
 
   }
+
+}
+
+void finalStartupSerial(int fsM) {
+
+	 String p[] { "Switch to AUTO MODE to continue startup." };
+
+	  char* m[] { "PHASE III STARTUP: RIDE START",
+	      "E-STOP RESET: Press and hold RIDE START to complete startup.",
+	      "RIDE STARTED"
+
+	  };
+
+	  switch (fsM) {
+	  case 1:
+	    Serial.println(p[0]);
+	    lcd.clear();
+	    l("STARTUP: PHASE III",0);
+	    l("RIDE START",1);
+	    l("Switch to AUTO MODE",3);
+	    break;
+	  case 2:
+	    Serial.println(m[0]);
+	    Serial.println(m[1]);
+	    l("To complete startup:",2);
+	    l("Hold RIDE START",3);
+	    break;
+	  case 3:
+	    Serial.println(m[2]);
+	    break;
+	  default:
+	    debugM("FINALSTART SERIAL");
+
+	  }
 
 }
 
@@ -441,8 +473,31 @@ void debugM(String dbMessage) {
   delay(10);
 }
 
+void serialReader() {
+Serial.write("boob");
 
+// read from port 0, send to port 1:
+  if (Serial.available()) {
+    int inByte = Serial.read();
+    Serial1.write(inByte);
 
+  }
+
+	if (Serial1.available()) {
+		// Wait a bit for the entire message to arrive
+		delay(10);
+		// Clear the screen
+		//lcd.clear();
+		LCD.print("TEST!");
+		// Write all characters received with the serial port to the LCD.
+		while (Serial1.available() > 0) {
+			lcd.print(Serial.read());
+		}
+	}
+
+}
+
+//l("123456789ABCDEFGHIJK",5);
 
 //Serial: Computer serial (Pins 0,1)
 //Serial1: LCD Screen (18,19)

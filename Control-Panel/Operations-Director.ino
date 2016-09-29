@@ -82,6 +82,11 @@ void dispatch() {
 		LCD.print("STATUS 100:");
 		lcdN();
 		LCD.print("DISPATCHING!");
+		lcd.clear();
+		lcd.setCursor(0,0);
+		lcd.print("STATUS 100: ");
+		lcd.setCursor(0,1);
+		lcd.print("DISPATCHING!");
 		dispatching = true;
 	}
 }

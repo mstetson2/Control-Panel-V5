@@ -9,6 +9,7 @@ long p100;
 long p250;
 long p500;
 long p1000;
+long pHold;
 
 void buttonStates() {
 	if (digitalRead(trouble_pressed) == LOW) {
@@ -50,6 +51,12 @@ void buttonStates() {
 		Serial.println("PROGRAMM ERROR: UNKNOWN MODE!!");
 	}
 
+	if (digitalRead(esr_reset_pressed) == LOW) {
+			esrPressed = true;
+		} else {
+			esrPressed = false;
+		}
+
 	if (digitalRead(ride_start_pressed) == !LOW) {
 		ridestartPressed = false;
 	} else {
@@ -73,6 +80,19 @@ void buttonStates() {
 	} else {
 		gatesOpen = true;
 	}
+
+	if (digitalRead(hmi_pressed) == LOW) {
+			hmiPressed = true;
+		} else {
+			hmiPressed = false;
+		}
+
+	if (digitalRead(ops_pressed) == LOW) {
+				opsPressed = true;
+			} else {
+				opsPressed = false;
+			}
+
 
 	if (digitalRead(type_1_selected) == LOW) {
 		typeOne = true;
@@ -182,4 +202,22 @@ void lampsOff() {
 	digitalWrite(restraintLed, LOW);
 	digitalWrite(troubleLed, LOW);
 	digitalWrite(modeLed, LOW);
+	digitalWrite(opsLed, LOW);
+	digitalWrite(esrLed, LOW);
+}
+
+boolean buttonHold(int pressTime, unsigned long pHold) {
+	  boolean tHold;
+	  boolean dHold;
+	  unsigned long cHold = millis();
+
+	    if (cHold - pHold > pressTime) {
+	      return true;
+	      pHold = false;
+	    }
+	  return false;
+}
+
+void statusStack() {
+
 }

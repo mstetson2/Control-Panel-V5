@@ -2,12 +2,13 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2016-09-23 02:56:44
+//This file has been generated on 2016-09-28 20:03:16
 
 #include "Arduino.h"
 #include <Arduino.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
+#include <LiquidCrystal_I2C.h>
 #include <Arduino.h>
 #include <Arduino.h>
 #include <Arduino.h>
@@ -22,7 +23,7 @@
 #include <Arduino.h>
 void setup() ;
 void loop() ;
-void wireConnect() ;
+int wireConnect() ;
 void kClear() ;
 void kEstop() ;
 void kDispatch() ;
@@ -34,11 +35,14 @@ void kRaiseFloor() ;
 void kLowerFloor() ;
 void kLockFlyer() ;
 void kUnlockFlyer() ;
+void lp(int x,int y) ;
+void ln(int y) ;
+void l(String s, int y) ;
 void lcdPosition(int row, int col) ;
-void lcdC();
+void lcdC() ;
 void backlightOn() ;
-void backlightOff();
-void serCommand();
+void backlightOff() ;
+void serCommand() ;
 void lcdN() ;
 void loopedVoids() ;
 void sT(String m) ;
@@ -49,18 +53,22 @@ void lampTestSerial(int ltM) ;
 void stopTestSerial(int stM) ;
 void longStartupSerial(int lsM) ;
 void esrStartupSerial(int esrsM) ;
+void finalStartupSerial(int fsM) ;
 void functionsChooseSerial(int efM) ;
 void functionSerial(int fM) ;
 void functionPage1Serial(int fuM) ;
 void functionPage2Serial(int fuM) ;
 void listSettings(int sM) ;
 void debugM(String dbMessage) ;
+void serialReader() ;
 void buttonStates() ;
 void blink100() ;
 void blink250() ;
 void blink500() ;
 void blink1000() ;
 void lampsOff() ;
+boolean buttonHold(int pressTime, unsigned long pHold) ;
+void statusStack() ;
 void operationsLoops() ;
 void setModeLed() ;
 void typeChecker() ;

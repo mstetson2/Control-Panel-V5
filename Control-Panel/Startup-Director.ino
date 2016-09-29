@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-
 int startMessage = 0;
 boolean i1;
 boolean i2;
@@ -11,9 +10,9 @@ void booter() {
 	estopBlinkBoot();
 	if (!preStarted) {
 		bootCredits();
-		delay(500);
+		delay(100);
 		disclaimer();
-		delay(1000);
+		delay(100);
 		bootSerial(1);
 	} else {
 		if (panelOn) {
@@ -22,30 +21,21 @@ void booter() {
 			}
 			if (!lampTested) {
 				lampTest();
-			} else {
-				if (!stopTested) {
-					stopTest();
+			} else if (!stopTested) {
+				stopTest();
+			} else if (!longWarninged) {
+				if (!functionSelectStartup) {
+					functionRequestHandler();
 				} else {
-					if (!longWarninged) {
-						if (!functionSelectStartup) {
-							functionRequestHandler();
-						} else {
-							longWarning();
-						}
-					} else {
-						if (!estopReseted) {
-							estopResetStartup();
-						} else {
-							if (!finalStarted) {
-								finalStartup();
-							} else {
-								bootComplete();
-							}
-						} //TODO error reset
-					}
+					longWarning();
 				}
-			}
-
+			} else if (!estopReseted) {
+				estopResetStartup();
+			} else if (!finalStarted) {
+				finalStartup();
+			} else {
+				bootComplete();
+			} //TODO error reset
 		} else {
 			digitalWrite(acknowledgeLed, LOW);
 			lampsOff();
@@ -59,10 +49,18 @@ void booter() {
 }
 
 void bootComplete() {
-	restraintsLocked = true;
+	  int con = wireConnect();
+	  if(con == 1)
+		  Serial.println("Keyboard Connected.");
+	  else
+		  Serial.println("Keyboard connection failed");
+
 	kEstop();
 	kCloseRestraints();
 	kCloseGates();
+	lcd.clear();
+	lcd.print("STARTUP COMPLETE!");
+	restraintsLocked = true;
 	digitalWrite(restraintLed, HIGH);
 	gatesLocked = true;
 	booted = true;
@@ -114,5 +112,4 @@ void estopBlinkBoot() {
 		}
 	}
 }
-
 
