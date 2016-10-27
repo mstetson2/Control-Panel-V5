@@ -47,7 +47,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\src;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\dev\Arduino\libraries\LiquidCrystal_I2C;C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\src\utility;C:\dev\Arduino\libraries\LiquidCrystal_I2C\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\dev\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\dev\ControlPanel\Arduino\Control-Panel-V5\Visual-Studio\control-panel;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\src;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\dev\Arduino\libraries\LiquidCrystal_I2C;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\mbylhwpg.c4b\Micro Platforms\default\debuggers\VM_DBG;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\mbylhwpg.c4b\Micro Platforms\default\debuggers;C:\dev\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\src;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\dev\Arduino\libraries\LiquidCrystal_I2C;C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\src\utility;C:\dev\Arduino\libraries\LiquidCrystal_I2C\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\dev\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\dev\ControlPanel\Arduino\Control-Panel-V5\Visual-Studio\control-panel;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>C:\dev\ControlPanel\Arduino\Control-Panel-V5\Visual-Studio\control-panel\__vm\.control-panel.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega2560__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=106012;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -77,22 +77,36 @@
     <None Include="control-panel.ino">
       <FileType>CppCode</FileType>
     </None>
-    <None Include="Engine.ino" />
-    <None Include="Operations.ino" />
-    <None Include="startup.ino" />
-    <None Include="zDev.ino" />
+    <None Include="Engine.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="operating.ino" />
+    <None Include="operations-main.ino" />
+    <None Include="Operations.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="startup.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="zDev.ino">
+      <FileType>CppCode</FileType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="keyboard_comm.h" />
     <ClInclude Include="PanelView.h" />
+    <ClInclude Include="ride-operator.h" />
     <ClInclude Include="testclass.h" />
     <ClInclude Include="__vm\.control-panel.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="keyboard_comm.cpp" />
     <ClCompile Include="PanelView.cpp" />
+    <ClCompile Include="ride-operator.cpp" />
     <ClCompile Include="testclass.cpp" />
   </ItemGroup>
   <PropertyGroup>

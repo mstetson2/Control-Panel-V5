@@ -1,7 +1,7 @@
-// testc.h
+// Debug.h
 
-#ifndef _TESTC_h
-#define _TESTC_h
+#ifndef _DEBUG_h
+#define _DEBUG_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -12,4 +12,3 @@
 
 #endif
 
-int test(int testcg);

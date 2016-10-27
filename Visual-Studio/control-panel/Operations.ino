@@ -32,70 +32,8 @@ boolean f3;
 boolean f3a;
 boolean f3b;
 
-//OPS VARS:
-boolean down;
-boolean stop;
-boolean rideStop;
-boolean eStop;
-boolean error;
-int errorCode;
 
-boolean gatesLocked;
-boolean restraintsLocked;
-boolean floorDown;
-boolean flyerLocked;
 
-boolean restraintD;
-
-boolean dispatchReady; //used in type 2 and 3 to say floor ready to lower
-boolean dispatchClear;
-boolean dispatching;
-boolean dispatchDone;
-int dispatchCooldown;
-
-void operationsLoops() {
-	setModeLed();
-	stopListener();
-	setPowerLed();
-	if (!stop) {
-		typeChecker();
-		stopBlinker();
-	}
-	else {
-		if (!estopPressed) {
-			stopReset();
-		}
-	}
-}
-
-//sets the mode Led based on functionEnabled? and the mode
-void setModeLed() {
-	//has not been tested
-	if (!modeAuto) {
-		if (functionEnabled) {
-			if (m250) {
-				digitalWrite(modeLed, HIGH);
-			}
-			else {
-				digitalWrite(modeLed, LOW);
-			}
-		}
-		else {
-			digitalWrite(modeLed, HIGH);
-		}
-	}
-	else if (functionEnabled) {
-		if (m500) {
-			digitalWrite(modeLed, HIGH);
-		}
-		else {
-			digitalWrite(modeLed, LOW);
-		}
-	}
-	else {
-		digitalWrite(modeLed, LOW);
-	}
-}
 
 void panelview(int line, int content) {
 	int y = line - 1;
@@ -762,7 +700,7 @@ void stopReset() {
 					m = millis();
 					pSent = true;
 				}
-				isHeld = buttonHold(2000, m);
+				isHeld = engine.buttonHold(2000, m);
 				if (isHeld) {
 					eStopResetHandle();
 				}

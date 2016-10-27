@@ -2,7 +2,7 @@
 // 
 // 
 
-#include "keyboard.h"
+#include "keyboard_comm.h"
 
 /*  KEYBOARD CODES
 *  00 = CLEAR
@@ -18,7 +18,7 @@
 *  10= UNLOCK_FLYER
 */
 
-void clear() {
+void keyboardCommunication::clear() {
 	int k0 = 0;
 	int k1 = 0;
 	Wire.beginTransmission(8); //clear
@@ -28,7 +28,7 @@ void clear() {
 	delay(10);
 }
 
-void estop() {
+void keyboardCommunication::estop() {
 	int k0 = 0;
 	int k1 = 1;
 	Wire.beginTransmission(8); //send keystroke
@@ -45,7 +45,7 @@ void estop() {
 	delay(10);
 }
 
-void dispatchK() {
+void keyboardCommunication::dispatch() {
 	int k0 = 0;
 	int k1 = 2;
 	Wire.beginTransmission(8); //send keystroke
@@ -62,7 +62,7 @@ void dispatchK() {
 	delay(10);
 }
 
-void open_gates() {
+void keyboardCommunication::open_gates() {
 	int k0 = 0;
 	int k1 = 3;
 	Wire.beginTransmission(8); //send keystroke
@@ -79,7 +79,7 @@ void open_gates() {
 	delay(10);
 }
 
-void close_gates() {
+void keyboardCommunication::close_gates() {
 	int k0 = 0;
 	int k1 = 4;
 	Wire.beginTransmission(8); //send keystroke
@@ -96,7 +96,7 @@ void close_gates() {
 	delay(10);
 }
 
-void open_restraints() {
+void keyboardCommunication::open_restraints() {
 	int k0 = 0;
 	int k1 = 5;
 	Wire.beginTransmission(8); //send keystroke
@@ -113,7 +113,7 @@ void open_restraints() {
 	delay(10);
 }
 
-void close_restraints() {
+void keyboardCommunication::close_restraints() {
 	int k0 = 0;
 	int k1 = 6;
 	Wire.beginTransmission(8); //send keystroke
@@ -130,7 +130,7 @@ void close_restraints() {
 	delay(10);
 }
 
-void raise_floor() {
+void keyboardCommunication::raise_floor() {
 	int k0 = 0;
 	int k1 = 7;
 	Wire.beginTransmission(8); //send keystroke
@@ -147,7 +147,7 @@ void raise_floor() {
 	delay(10);
 }
 
-void lower_floor() {
+void keyboardCommunication::lower_floor() {
 	int k0 = 0;
 	int k1 = 8;
 	Wire.beginTransmission(8); //send keystroke
@@ -164,7 +164,7 @@ void lower_floor() {
 	delay(10);
 }
 
-void lock_flyer() {
+void keyboardCommunication::lock_flyer() {
 	int k0 = 0;
 	int k1 = 9;
 	Wire.beginTransmission(8); //send keystroke
@@ -181,7 +181,7 @@ void lock_flyer() {
 	delay(10);
 }
 
-void unlock_flyer() {
+void keyboardCommunication::unlock_flyer() {
 	int k0 = 1;
 	int k1 = 0;
 	Wire.beginTransmission(8); //send keystroke

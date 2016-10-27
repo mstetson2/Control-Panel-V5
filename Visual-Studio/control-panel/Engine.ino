@@ -170,6 +170,7 @@ void buttonStates() {
 	}
 }
 
+
 void blink100() {
 	unsigned long c100 = millis();
 	if (c100 - p100 > 100) {
@@ -232,17 +233,7 @@ void lampsOff() {
 	digitalWrite(esrLed, LOW);
 }
 
-boolean buttonHold(int pressTime, unsigned long pHold) {
-	boolean tHold;
-	boolean dHold;
-	unsigned long cHold = millis();
 
-	if (cHold - pHold > pressTime) {
-		return true;
-		pHold = false;
-	}
-	return false;
-}
 
 void statusStack() {
 

@@ -17,6 +17,7 @@ class testclass
  public:
 	void init();
 	void test_void();
+	int dev();
 };
 
 extern testclass test;

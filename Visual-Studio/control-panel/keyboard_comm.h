@@ -1,7 +1,7 @@
 // keyboard.h
 
-#ifndef _KEYBOARD_h
-#define _KEYBOARD_h
+#ifndef _KEYBOARD__COMM_h
+#define _KEYBOARD_COMM_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -11,7 +11,7 @@
 
 #include <Wire.h>
 
-class keyboard
+class keyboardCommunication
 {
 protected:
 
@@ -32,7 +32,7 @@ private:
 	int k0 = 0;
 	int k1 = 0;
 };
-extern keyboard kb;
+extern keyboardCommunication kb;
 
 #endif
 

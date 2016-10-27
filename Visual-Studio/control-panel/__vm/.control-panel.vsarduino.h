@@ -53,6 +53,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "control-panel.ino"
 #include "Engine.ino"
 #include "Operations.ino"
+#include "operating.ino"
+#include "operations-main.ino"
 #include "startup.ino"
 #include "zDev.ino"
 #endif

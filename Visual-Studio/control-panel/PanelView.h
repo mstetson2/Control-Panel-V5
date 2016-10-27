@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 
-class PanelViewClass
+class PanelView
 {
  protected:
 
@@ -18,7 +18,7 @@ class PanelViewClass
 	void init();
 };
 
-extern PanelViewClass PanelView;
+extern PanelView pv;
 
 #endif
 

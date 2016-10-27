@@ -10,21 +10,22 @@
 /*
 * This is the main file of the program. *
 */
-#include <SoftwareSerial.h>
-#include <LiquidCrystal.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#include "keyboard.h"
+
 #include <Arduino.h>
+
 //external libraries:
-//#include <Wire.h> //Used to communicate between the Arduino Due and Mega. This Arduino (mega) sends commands to the Due to send Keyboard strokes to the PC to control the simulation.
-//#include <SoftwareSerial.h> //Used for the LCD screen.
-//#include <LiquidCrystal_I2C.h> //Used for the 20x4 LCD screen
+#include <SoftwareSerial.h> //Used for the LCD screen.
+#include <LiquidCrystal.h>
+#include <Wire.h> //Used to communicate between the Arduino Due and Mega. This Arduino (mega) sends commands to the Due to send Keyboard strokes to the PC to control the simulation.
+#include <LiquidCrystal_I2C.h> //Used for the 20x4 LCD screen
+
 //source files:
+#include "Debug.h"
 #include "Engine.h"
 #include "PanelView.h"
 #include "testclass.h"
-
+#include "keyboard_comm.h"
+#include "ride-operator.h"
 
 String version = "5.0.0 dev2";
 
@@ -204,6 +205,7 @@ void setup() {
 
 void loop() {
 	loopedVoids();
+	dev();
 	//test.test_void();
 	//startupTest();
 }

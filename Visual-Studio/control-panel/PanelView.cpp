@@ -4,12 +4,12 @@
 
 #include "PanelView.h"
 
-void PanelViewClass::init()
+void PanelView::init()
 {
 
 
 }
 
 
-PanelViewClass PanelView;
+PanelView pv;
 

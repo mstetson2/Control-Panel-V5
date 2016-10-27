@@ -134,7 +134,6 @@ void estopBlinkBoot() {
 }
 
 //METHODS:
-#include <Arduino.h>
 
 void lampTest() {
 	//LAMP TEST:
@@ -287,7 +286,7 @@ void stopTest() {
 					m = millis();
 					pSent = true;
 				}
-				isHeld = buttonHold(1000, m);
+				isHeld = engine.buttonHold(1000, m);
 				if (isHeld) {
 					i1 = true;
 					if (!b4) {
@@ -352,7 +351,7 @@ void stopTestCompleted() {
 			m = millis();
 			pSent = true;
 		}
-		isHeld = buttonHold(500, m);
+		isHeld = engine.buttonHold(500, m);
 		if (isHeld) {
 			digitalWrite(acknowledgeLed, LOW);
 			lampsOff();
@@ -393,7 +392,7 @@ void longWarning() {
 					m = millis();
 					pSent = true;
 				}
-				isHeld = buttonHold(500, m);
+				isHeld = engine.buttonHold(500, m);
 				if (isHeld) {
 					longStartupSerial(3);
 					digitalWrite(acknowledgeLed, LOW);
@@ -417,7 +416,7 @@ void longWarning() {
 					m = millis();
 					pSent = true;
 				}
-				isHeld = buttonHold(10000, m);
+				isHeld = engine.buttonHold(10000, m);
 				if (isHeld) {
 					longStartupSerial(4);
 					longWarningComplete();
@@ -468,7 +467,7 @@ void estopResetStartup() {
 				m = millis();
 				pSent = true;
 			}
-			isHeld = buttonHold(5000, m);
+			isHeld = engine.buttonHold(5000, m);
 			if (isHeld) {
 				esrStartupSerial(3);
 				estopResetComplete();
@@ -516,7 +515,7 @@ void finalStartup() {
 				m = millis();
 				pSent = true;
 			}
-			isHeld = buttonHold(3000, m);
+			isHeld = engine.buttonHold(3000, m);
 			if (isHeld) {
 				finalStartupSerial(3);
 				finalStarted = true;
