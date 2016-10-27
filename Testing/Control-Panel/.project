@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Panel_Libraries</name>
+	<name>Control-Panel</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -34,12 +34,27 @@
 		<link>
 			<name>core/core</name>
 			<type>2</type>
-			<location>C:/MiscPrograms/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/cores/arduino</location>
+			<location>C:/Users/Matt/Programs/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/cores/arduino</location>
 		</link>
 		<link>
 			<name>core/variant</name>
 			<type>2</type>
-			<location>C:/MiscPrograms/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/variants/mega</location>
+			<location>C:/Users/Matt/Programs/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/variants/mega</location>
+		</link>
+		<link>
+			<name>libraries/LiquidCrystal_I2C</name>
+			<type>2</type>
+			<location>C:/dev/Arduino/libraries/LiquidCrystal_I2C</location>
+		</link>
+		<link>
+			<name>libraries/SoftwareSerial</name>
+			<type>2</type>
+			<location>C:/Users/Matt/Programs/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/libraries/SoftwareSerial</location>
+		</link>
+		<link>
+			<name>libraries/Wire</name>
+			<type>2</type>
+			<location>C:/Users/Matt/Programs/sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.14/libraries/Wire</location>
 		</link>
 	</linkedResources>
 </projectDescription>
